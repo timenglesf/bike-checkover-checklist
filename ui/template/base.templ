@@ -1,0 +1,36 @@
+package template
+
+import (
+	"github.com/timenglesf/bike-checkover-checklist/ui/template/partials"
+	"github.com/timenglesf/bike-checkover-checklist/internal/shared"
+)
+
+templ Base(title string, page templ.Component, data *shared.TemplateData) {
+	<!DOCTYPE html>
+	<html lang="en" data-theme="nord">
+		<head>
+			<!-- Metadata -->
+			<meta charset="UTF-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+			<meta name="theme-color" content="#a9a5bf"/>
+			<meta name="description" content="Bike Check Over Checklist"/>
+			<meta name="author" content="Tim Engle"/>
+			<title>Bike Checkover Check List</title>
+			<!-- Stylesheets -->
+			<link rel="stylesheet" href="/static/dist/style/styles.css"/>
+			<!-- Fonts -->
+			<link rel="preconnect" href="https://fonts.googleapis.com"/>
+			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+			<!-- Scripts -->
+			// <script defer src="/static/dist/js/htmx.min.js"></script>
+		</head>
+		<body class="flex flex-col min-h-screen bg-base-100 text-base-content">
+			// @partials.PageHeader(data)
+			<div id="response"></div>
+			<main class="flex-grow mb-12 tracking-tighter">
+				@page
+			</main>
+			@partials.PageFooter(data)
+		</body>
+	</html>
+}

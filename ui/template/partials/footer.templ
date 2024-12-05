@@ -1,0 +1,18 @@
+package partials
+
+import (
+	"strconv"
+	"github.com/timenglesf/bike-checkover-checklist/internal/shared"
+)
+
+templ PageFooter(d *shared.TemplateData) {
+	<footer class="bottom-0 h-8">
+		<div class="">
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<p>&copy; { strconv.Itoa( d.CurrentYear) } Tim Engle. All rights reserved.</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+}
