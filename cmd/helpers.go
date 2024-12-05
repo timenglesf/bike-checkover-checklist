@@ -19,10 +19,10 @@ func (app *application) serverError(w http.ResponseWriter, r *http.Request, err 
 	http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
 }
 
-func (app *application) clientError(w http.ResponseWriter, status int, msg string, err error) {
-	app.logger.Error(msg, "err", err.Error())
-	http.Error(w, http.StatusText(status), status)
-}
+//func (app *application) clientError(w http.ResponseWriter, status int, msg string, err error) {
+//	app.logger.Error(msg, "err", err.Error())
+//	http.Error(w, http.StatusText(status), status)
+//}
 
 func (app *application) newTemplateData(r *http.Request) shared.TemplateData {
 	return shared.TemplateData{

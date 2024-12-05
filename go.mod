@@ -1,6 +1,6 @@
 module github.com/timenglesf/bike-checkover-checklist
 
-go 1.23.1
+go 1.22.9
 
 require (
 	github.com/a-h/templ v0.2.793 // indirect
