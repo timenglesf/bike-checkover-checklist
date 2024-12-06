@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/a-h/templ"
+	"github.com/timenglesf/bike-checkover-checklist/internal/checklist"
 	"github.com/timenglesf/bike-checkover-checklist/internal/shared"
 )
 
@@ -29,6 +30,7 @@ func (app *application) newTemplateData(r *http.Request) shared.TemplateData {
 		Date:        time.Now(),
 		CurrentYear: time.Now().Year(),
 		Flash:       &shared.FlashMessage{},
+		CheckList:   checklist.CreateCheckList(),
 		// IsAuthenticated: app.isAuthenticated(r),
 		// IsAdmin:         app.isAdmin(r),
 		// CSRFToken:       nosurf.Token(r),
