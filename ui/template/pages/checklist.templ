@@ -2,8 +2,25 @@ package pages
 
 import (
 	"github.com/timenglesf/bike-checkover-checklist/internal/shared"
+	"github.com/timenglesf/bike-checkover-checklist/ui/template/component"
 )
 
 templ CheckList(d *shared.TemplateData) {
-	<h1>Checklist</h1>
+	<h1 class="mb-8 text-3xl text-center">Bike Checklist</h1>
+	<ul class="flex flex-col gap-4 mx-2">
+		@component.CheckListItem(d.CheckList.BrakePad.Id, d.CheckList.BrakePad.Name, d.CheckList.BrakePad.Description)
+		@component.CheckListItem(d.CheckList.Chain.Id, d.CheckList.Chain.Name, d.CheckList.Chain.Description)
+		@component.CheckListItem(d.CheckList.Tires.Id, d.CheckList.Tires.Name, d.CheckList.Tires.Description)
+		@component.CheckListItem(d.CheckList.Cassette.Id, d.CheckList.Cassette.Name, d.CheckList.Cassette.Description)
+		@component.CheckListItem(d.CheckList.CablesHousing.Id, d.CheckList.CablesHousing.Name, d.CheckList.CablesHousing.Description)
+		@component.CheckListItem(d.CheckList.Tubes.Id, d.CheckList.Tubes.Name, d.CheckList.Tubes.Description)
+		@component.CheckListItem(d.CheckList.ChainRing.Id, d.CheckList.ChainRing.Name, d.CheckList.ChainRing.Description)
+		@component.CheckListItem(d.CheckList.FrontWheel.Id, d.CheckList.FrontWheel.Name, d.CheckList.FrontWheel.Description)
+		@component.CheckListItem(d.CheckList.PadFunction.Id, d.CheckList.PadFunction.Name, d.CheckList.PadFunction.Description)
+		@component.CheckListItem(d.CheckList.Derailleur.Id, d.CheckList.Derailleur.Name, d.CheckList.Derailleur.Description)
+		@component.CheckListItem(d.CheckList.RearWheel.Id, d.CheckList.RearWheel.Name, d.CheckList.RearWheel.Description)
+		@component.CheckListItem(d.CheckList.RotorRim.Id, d.CheckList.RotorRim.Name, d.CheckList.RotorRim.Description)
+		@component.CheckListItem(d.CheckList.Hanger.Id, d.CheckList.Hanger.Name, d.CheckList.Hanger.Description)
+		@component.CheckListItem(d.CheckList.Shifting.Id, d.CheckList.Shifting.Name, d.CheckList.Shifting.Description)
+	</ul>
 }
