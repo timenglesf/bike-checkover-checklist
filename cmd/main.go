@@ -5,24 +5,33 @@ import (
 	"os"
 
 	"github.com/alexedwards/scs/v2"
-	"github.com/timenglesf/bike-checkover-checklist/internal/db"
-	"github.com/timenglesf/bike-checkover-checklist/ui/template"
+	"github.com/go-playground/form/v4"
 	"go.mongodb.org/mongo-driver/mongo"
+
+	"github.com/timenglesf/bike-checkover-checklist/internal/db"
+	"github.com/timenglesf/bike-checkover-checklist/internal/models"
+	"github.com/timenglesf/bike-checkover-checklist/ui/template"
 )
 
 const (
 	DB_CONNECTION_ATTEMPTS = 10
 	DB_NAME                = "bike-check-in"
+	DB_USER_COLLECTION     = "users"
 )
 
 type application struct {
-	logger           *slog.Logger
-	cfg              *config
+	logger *slog.Logger
+	cfg    *config
+	// UI Templates
 	pageTemplates    *template.Pages
 	partialTemplates *template.Partials
-	db               *mongo.Client
-	sessionManager   *scs.SessionManager
+	// Database & Models
+	db             *mongo.Client
+	sessionManager *scs.SessionManager
+	users          *models.UserModel
 	// models data.Models
+
+	formDecoder *form.Decoder
 }
 
 type config struct {
@@ -31,29 +40,33 @@ type config struct {
 }
 
 func main() {
-	app, err := createApplication()
-	if err != nil {
-		app.logger.Error("Error creating application", "err", err)
-		return
-	}
+	// Create logger
+	logger := createLogger()
 
 	// Connect to the database.
-	dbClient, err := db.ConnectWithRetries(app.logger, DB_CONNECTION_ATTEMPTS)
+	dbClient, err := db.ConnectWithRetries(
+		logger,
+		DB_CONNECTION_ATTEMPTS,
+	)
 	if err != nil {
-		app.logger.Error("Failed to connect to database", "err", err.Error())
+		logger.Error("Failed to connect to database", "err", err.Error())
 		os.Exit(1)
 	}
 	defer db.Close(dbClient)
 
-	app.db = dbClient
-
 	// Initialize session manager
 	sessionManager := initializeSessionManager(dbClient)
 	if err != nil {
-		app.logger.Error("unable to initialize session manager", "error", err)
+		logger.Error("unable to initialize session manager", "error", err)
 		panic("failed to initialize session manager")
 	}
-	app.sessionManager = sessionManager
+
+	// Create the application state
+	app, err := createApplication(dbClient, logger, sessionManager)
+	if err != nil {
+		app.logger.Error("Error creating application", "err", err)
+		return
+	}
 
 	// Start the HTTP server.
 	svr := app.intializeServer()

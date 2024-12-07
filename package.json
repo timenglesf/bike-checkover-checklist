@@ -1,6 +1,6 @@
 {
   "name": "bike-checkover-checklist",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "description": "A check list for technicians to use while intaking bikes for repair.",
   "main": "tailwind.config.js",
   "dependencies": {

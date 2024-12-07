@@ -1,0 +1,39 @@
+package pages
+
+import (
+	"github.com/timenglesf/bike-checkover-checklist/internal/shared"
+)
+
+templ UserLogin(d *shared.TemplateData) {
+	<h1 class="mb-12 text-2xl font-semibold text-center">Login</h1>
+	<div class="mx-auto py-4 px-8 border-2 border-zinc-600 rounded-lg w-3/4">
+		<form action="/user/login" method="POST">
+			<div class="mb-4">
+				@PinInput(d)
+			</div>
+			<div class="flex justify-around">
+				<button class="btn btn-success" type="submit">Login</button>
+				<a href="/tmp-checklist" class="btn btn-info">Check List</a>
+			</div>
+		</form>
+	</div>
+	if d.Flash.Type != "" {
+		<div class="mx-auto mt-8 w-3/4">
+			@DisplayFlashAlert(d)
+		</div>
+	}
+}
+
+templ PinInput(d *shared.TemplateData) {
+	<label class="input input-bordered flex items-center gap-2">
+		Pin	
+		<input
+			type="password"
+			name="pin"
+			id="pin"
+			maxlength="4"
+			class="grow"
+			autofocus
+		/>
+	</label>
+}

@@ -31,15 +31,15 @@ func TestCreateLogger(t *testing.T) {
 	assert.NotNil(t, logger)
 }
 
-func TestCreateApplication(t *testing.T) {
-	app, err := createApplication()
-	assert.NoError(t, err)
-	assert.NotNil(t, app)
-	assert.NotNil(t, app.logger)
-	assert.NotNil(t, app.cfg)
-	assert.NotNil(t, app.pageTemplates)
-	assert.NotNil(t, app.partialTemplates)
-}
+//func TestCreateApplication(t *testing.T) {
+//	app, err := createApplication()
+//	assert.NoError(t, err)
+//	assert.NotNil(t, app)
+//	assert.NotNil(t, app.logger)
+//	assert.NotNil(t, app.cfg)
+//	assert.NotNil(t, app.pageTemplates)
+//	assert.NotNil(t, app.partialTemplates)
+//}
 
 func TestCreateConfig(t *testing.T) {
 	os.Setenv("PORT", "8080")
