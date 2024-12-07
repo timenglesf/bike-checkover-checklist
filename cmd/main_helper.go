@@ -7,7 +7,10 @@ import (
 	"os"
 	"time"
 
+	"github.com/alexedwards/scs/mongodbstore"
+	"github.com/alexedwards/scs/v2"
 	"github.com/timenglesf/bike-checkover-checklist/ui/template"
+	"go.mongodb.org/mongo-driver/mongo"
 )
 
 // Initialize the HTTP server with configuration settings
@@ -44,6 +47,7 @@ func createConfig() *config {
 	cfg := &config{}
 	cfg.port = getEnv("PORT", "8081")
 	cfg.defaultAdminPassword = getEnv("DEFUALT_ADMIN_PASSWORD", "password")
+
 	return cfg
 }
 
@@ -53,4 +57,11 @@ func getEnv(key, defaultValue string) string {
 		return defaultValue
 	}
 	return value
+}
+
+func initializeSessionManager(dbClient *mongo.Client) *scs.SessionManager {
+	sessionManager := scs.New()
+	sessionManager.Store = mongodbstore.New(dbClient.Database(DB_NAME))
+	sessionManager.Lifetime = 24 * 7 * time.Hour
+	return sessionManager
 }
