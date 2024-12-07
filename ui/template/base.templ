@@ -7,27 +7,28 @@ import (
 
 templ Base(title string, page templ.Component, data *shared.TemplateData) {
 	<!DOCTYPE html>
-	<html lang="en" data-theme="nord">
+	<html lang="en" data-theme="acid">
 		<head>
 			<!-- Metadata -->
 			<meta charset="UTF-8"/>
 			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-			<meta name="theme-color" content="#a9a5bf"/>
+			//<meta name="theme-color" content="#a9a5bf"/>
 			<meta name="description" content="Bike Check Over Checklist"/>
 			<meta name="author" content="Tim Engle"/>
 			<title>Bike Checkover Check List</title>
 			<!-- Stylesheets -->
 			<link rel="stylesheet" href="/static/dist/style/styles.css"/>
 			<!-- Fonts -->
-			<link rel="preconnect" href="https://fonts.googleapis.com"/>
-			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+			//	<link rel="preconnect" href="https://fonts.googleapis.com"/>
+			//	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 			<!-- Scripts -->
 			// <script defer src="/static/dist/js/htmx.min.js"></script>
+			//	<script src="https://unpkg.com/htmx.org@2.0.3" integrity="sha384-0895/pl2MU10Hqc6jd4RvrthNlDiE9U1tWmX7WRESftEDRosgxNsQG/Ze9YMRzHq" crossorigin="anonymous"></script>
 		</head>
 		<body class="flex flex-col min-h-screen bg-base-100 text-base-content">
 			// @partials.PageHeader(data)
 			<div id="response"></div>
-			<main class="flex-grow mb-12 tracking-tighter">
+			<main class="flex-grow mt-6 mb-12 tracking-tighter">
 				@page
 			</main>
 			@partials.PageFooter(data)

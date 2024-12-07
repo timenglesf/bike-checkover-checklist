@@ -1,6 +1,10 @@
 package shared
 
-import "time"
+import (
+	"time"
+
+	"github.com/timenglesf/bike-checkover-checklist/internal/checklist"
+)
 
 const (
 	DateLayout     = "January 2, 2006"
@@ -15,8 +19,9 @@ type FlashMessage struct {
 type TemplateData struct {
 	// IsAuthenticated bool
 	// IsAdmin         bool
-	Flash *FlashMessage
-	Date  time.Time
+	CheckList *checklist.CheckList
+	Flash     *FlashMessage
+	Date      time.Time
 	//	CSRFToken   string
 	CurrentYear int
 }

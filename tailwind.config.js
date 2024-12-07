@@ -2,7 +2,7 @@
 module.exports = {
   content: ["ui/template/**/*.templ"],
   daisyui: {
-    themes: ["Nord"],
+    themes: ["acid"],
   },
   theme: {
     extend: {},
