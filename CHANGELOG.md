@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.1](https://github.com/timenglesf/bike-checkover-checklist/compare/v0.2.0...v0.2.1) (2024-12-07)
+
+
+### Features
+
+* add user login and session management ([5842e4a](https://github.com/timenglesf/bike-checkover-checklist/commit/5842e4a4f3874dd533f85fe3f73a5989e67b087e))
+
+
+### Bug Fixes
+
+* correct string capitalization for ErrDBConnectionFailed ([a5ed6fa](https://github.com/timenglesf/bike-checkover-checklist/commit/a5ed6fa96a2bc33f91fcee989268329ee55c99cb))
+
 ## [0.2.0](https://github.com/timenglesf/bike-checkover-checklist/compare/v0.0.1...v0.2.0) (2024-12-07)
 
 
