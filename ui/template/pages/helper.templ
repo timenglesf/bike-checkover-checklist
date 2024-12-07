@@ -1,0 +1,23 @@
+package pages
+
+import (
+	"github.com/timenglesf/bike-checkover-checklist/internal/shared"
+	"github.com/timenglesf/bike-checkover-checklist/ui/template/component"
+)
+
+templ EmptyDiv() {
+	<div></div>
+}
+
+func DisplayFlashAlert(d *shared.TemplateData) templ.Component {
+	switch d.Flash.Type {
+	case shared.FlashSuccess:
+		return component.SuccessAlert(d.Flash.Message, shared.FlashSuccess, "mb-6")
+	case shared.FlashWarning:
+		return component.WarningAlert(d.Flash.Message, shared.FlashWarning, "mb-6")
+	case shared.FlashError:
+		return component.ErrorAlert(d.Flash.Message, shared.FlashError, "mb-6")
+	default:
+		return EmptyDiv()
+	}
+}
