@@ -28,14 +28,20 @@ func (app *application) routes() http.Handler {
 
 	r.NotFound(http.HandlerFunc(app.handleNotFound))
 
+	r.Use(app.sessionManager.LoadAndSave)
+
 	// r.MethodNotAllowed(http.HandlerFunc(app.methodNotAllowedResponse))
 	r.Use(middleware.Heartbeat("/ping"))
 
 	// Serve static files
 	r.Handle("/static/*", http.FileServerFS(ui.Files))
 
+	r.Get("/tmp-checklist", app.handleDisplayChecklist)
+
 	r.Get("/", app.handleDisplayMainPage)
 
+	r.Get("/login", app.userLogin)
+	r.Post("/user/login", app.handlePostUserLogin)
 	// r.Get("/checklist", app.getChecklistDisplayHandler)
 
 	return r

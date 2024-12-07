@@ -9,8 +9,11 @@ import (
 
 	"github.com/alexedwards/scs/mongodbstore"
 	"github.com/alexedwards/scs/v2"
-	"github.com/timenglesf/bike-checkover-checklist/ui/template"
+	"github.com/go-playground/form/v4"
 	"go.mongodb.org/mongo-driver/mongo"
+
+	"github.com/timenglesf/bike-checkover-checklist/internal/models"
+	"github.com/timenglesf/bike-checkover-checklist/ui/template"
 )
 
 // Initialize the HTTP server with configuration settings
@@ -31,15 +34,25 @@ func createLogger() *slog.Logger {
 	return logger
 }
 
-func createApplication() (*application, error) {
+func createApplication(
+	dbClient *mongo.Client,
+	logger *slog.Logger,
+	sessionManager *scs.SessionManager,
+) (*application, error) {
 	app := &application{
-		logger:           createLogger(),
+		logger:           logger,
+		sessionManager:   sessionManager,
 		cfg:              createConfig(),
 		pageTemplates:    template.CreatePages(),
 		partialTemplates: template.CreatePartials(),
+		db:               dbClient,
+		users: &models.UserModel{
+			DB:             dbClient,
+			DBName:         DB_NAME,
+			CollectionName: DB_USER_COLLECTION,
+		},
+		formDecoder: form.NewDecoder(),
 	}
-	app.logger = createLogger()
-	app.cfg = createConfig()
 	return app, nil
 }
 
