@@ -2,7 +2,6 @@ package main
 
 import (
 	"errors"
-	"fmt"
 	"net/http"
 
 	"github.com/timenglesf/bike-checkover-checklist/internal/shared"
@@ -11,11 +10,6 @@ import (
 )
 
 func (app *application) handleDisplayMainPage(w http.ResponseWriter, r *http.Request) {
-	users, err := app.users.GetAll(r.Context())
-	if err != nil {
-		app.logger.Error("Error retrieving users", "err", err)
-	}
-	fmt.Printf("Users: %v", users)
 	data := app.newTemplateData(r)
 	if !data.IsAuthenticated {
 		app.renderPage(w, r, app.pageTemplates.CheckList, "Check List", &data)
@@ -23,7 +17,10 @@ func (app *application) handleDisplayMainPage(w http.ResponseWriter, r *http.Req
 	// Tmp
 	u := app.sessionManager.GetString(r.Context(), SessionUserName)
 	app.logger.Info("User", "user", u)
-	w.Write([]byte(u))
+	_, err := w.Write([]byte(u))
+	if err != nil {
+		app.serverError(w, r, err)
+	}
 }
 
 func (app *application) handleDisplayChecklist(w http.ResponseWriter, r *http.Request) {
