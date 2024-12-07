@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.2](https://github.com/timenglesf/bike-checkover-checklist/compare/v0.2.1...v0.2.2) (2024-12-07)
+
+
+### Features
+
+* add pin login ui ([8b3c349](https://github.com/timenglesf/bike-checkover-checklist/commit/8b3c349d2bf7e904f9f5368d4ecbdc883b9854bf))
+
 ### [0.2.1](https://github.com/timenglesf/bike-checkover-checklist/compare/v0.2.0...v0.2.1) (2024-12-07)
 
 
