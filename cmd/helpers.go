@@ -9,7 +9,7 @@ import (
 	"github.com/a-h/templ"
 	"github.com/go-playground/form/v4"
 
-	"github.com/timenglesf/bike-checkover-checklist/internal/checklist"
+	"github.com/timenglesf/bike-checkover-checklist/internal/models"
 	"github.com/timenglesf/bike-checkover-checklist/internal/shared"
 )
 
@@ -44,7 +44,7 @@ func (app *application) newTemplateData(r *http.Request) shared.TemplateData {
 		Date:            time.Now(),
 		CurrentYear:     time.Now().Year(),
 		Flash:           &shared.FlashMessage{},
-		CheckList:       checklist.CreateCheckList(),
+		CheckList:       models.CreateChecklist(),
 		IsAuthenticated: app.isAuthenticated(r),
 		// IsAdmin:         app.isAdmin(r),
 		// CSRFToken:       nosurf.Token(r),

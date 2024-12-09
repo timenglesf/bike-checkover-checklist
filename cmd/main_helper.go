@@ -51,6 +51,11 @@ func createApplication(
 			DBName:         DB_NAME,
 			CollectionName: DB_USER_COLLECTION,
 		},
+		checklist: &models.ChecklistModel{
+			DB:             dbClient,
+			DBName:         DB_NAME,
+			CollectionName: DB_CHECKLIST_COLLECTION,
+		},
 		formDecoder: form.NewDecoder(),
 	}
 	return app, nil

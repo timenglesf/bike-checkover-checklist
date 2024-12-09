@@ -1,9 +1,10 @@
+// This file contains the shared template data that is used in the templ templates and handlers.
+// It also contains some helper functions to format dates and times.
 package shared
 
 import (
 	"time"
 
-	"github.com/timenglesf/bike-checkover-checklist/internal/checklist"
 	"github.com/timenglesf/bike-checkover-checklist/internal/models"
 	"github.com/timenglesf/bike-checkover-checklist/internal/validator"
 )
@@ -29,12 +30,12 @@ type FlashMessage struct {
 type TemplateData struct {
 	// IsAuthenticated bool
 	// IsAdmin         bool
-	CheckList       *checklist.CheckList
 	Flash           *FlashMessage
 	PinForm         PinForm
 	Date            time.Time
 	IsAuthenticated bool
-	User            models.User
+	User            *models.User
+	CheckList       *models.Checklist
 	//	CSRFToken   string
 	CurrentYear int
 }
