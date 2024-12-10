@@ -1,8 +1,8 @@
 package component
 
-import "github.com/timenglesf/bike-checkover-checklist/internal/checklist"
+import "github.com/timenglesf/bike-checkover-checklist/internal/models"
 
-templ CheckListItem(id checklist.CheckListItemId, name, desc string) {
+templ CheckListItem(id models.ChecklistItemId, name, desc string) {
 	<li class="border-2 border-zinc-600 rounded-md px-2 py-1 shadow-md">
 		<p class="text-xl">{ desc }</p>
 		<div class="flex gap-2">
