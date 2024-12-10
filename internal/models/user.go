@@ -19,6 +19,7 @@ type User struct {
 	CreatedAt time.Time          `bson:"created_at"`
 	ID        primitive.ObjectID `bson:"_id"`
 	Pin       string             `bson:"pin"`
+	StoreId   string             `bson:"storeId"`
 }
 
 type UserModel struct {
