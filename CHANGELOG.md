@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.3](https://github.com/timenglesf/bike-checkover-checklist/compare/v0.2.2...v0.2.3) (2024-12-10)
+
+
+### Features
+
+* add checklist model and update references ([e9154df](https://github.com/timenglesf/bike-checkover-checklist/commit/e9154df6d93dccaca9f370095304e68620f0728e))
+* **models:** add properties mongo doc & methods to Checklist model ([c1895a3](https://github.com/timenglesf/bike-checkover-checklist/commit/c1895a35d8cdd0c98b158e705b4bae4ab8ca87fd))
+* refactor templ components and remove checklist ([6c178ad](https://github.com/timenglesf/bike-checkover-checklist/commit/6c178ad41ef62d52d014c7a71a3a013d6be04d51))
+
 ### [0.2.2](https://github.com/timenglesf/bike-checkover-checklist/compare/v0.2.1...v0.2.2) (2024-12-07)
 
 

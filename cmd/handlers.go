@@ -65,7 +65,7 @@ func (app *application) handlePostUserLogin(w http.ResponseWriter, r *http.Reque
 			return
 		}
 	}
-	data.User = user
+	data.User = &user
 	app.sessionManager.Put(r.Context(), SessionUserID, user.ID.Hex())
 	app.sessionManager.Put(r.Context(), SessionUserName, user.FirstName)
 }

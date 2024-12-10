@@ -14,9 +14,10 @@ import (
 )
 
 const (
-	DB_CONNECTION_ATTEMPTS = 10
-	DB_NAME                = "bike-check-in"
-	DB_USER_COLLECTION     = "users"
+	DB_CONNECTION_ATTEMPTS  = 10
+	DB_NAME                 = "bike-check-in"
+	DB_USER_COLLECTION      = "users"
+	DB_CHECKLIST_COLLECTION = "checklists"
 )
 
 type application struct {
@@ -29,6 +30,7 @@ type application struct {
 	db             *mongo.Client
 	sessionManager *scs.SessionManager
 	users          *models.UserModel
+	checklist      *models.ChecklistModel
 	// models data.Models
 
 	formDecoder *form.Decoder
