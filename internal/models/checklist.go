@@ -92,10 +92,11 @@ func CreateChecklist() *Checklist {
 
 type ChecklistDocument struct {
 	Checklist Checklist          `bson:"checklist"`
-	ID        primitive.ObjectID `bson:"_id"`
+	ID        primitive.ObjectID `bson:"_id,omitempty"`
 	UserId    primitive.ObjectID `bson:"userId"`
 	StoreId   string             `bson:"storeId"`
 	CreatedAt primitive.DateTime `bson:"createdAt"`
+	Complete  bool               `bson:"complete"`
 }
 
 type ChecklistModel struct {
@@ -116,6 +117,7 @@ func createChecklistDocument(
 		UserId:    userId,
 		StoreId:   storeId,
 		CreatedAt: primitive.NewDateTimeFromTime(time.Now()),
+		Complete:  false,
 	}
 }
 
@@ -229,4 +231,21 @@ func (m *ChecklistModel) GetStoreChecklists(
 		return nil, err
 	}
 	return checklists, nil
+}
+
+func (m *ChecklistModel) GetRecentActiveChecklist(
+	ctx context.Context,
+	userId primitive.ObjectID,
+) (*ChecklistDocument, error) {
+	coll := m.getCollection()
+	filter := bson.M{
+		"userId":   userId,
+		"complete": false,
+	}
+	var doc ChecklistDocument
+	err := coll.FindOne(ctx, filter).Decode(&doc)
+	if err != nil {
+		return nil, err
+	}
+	return &doc, nil
 }
