@@ -5,6 +5,8 @@ import (
 	"errors"
 	"time"
 
+	"github.com/timenglesf/bike-checkover-checklist/internal/validator"
+
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -34,8 +36,8 @@ var (
 
 type ChecklistItem struct {
 	Status      ChecklistItemStatus `bson:"status"`
-	Description string
-	Name        string
+	Description string              `bson:"description,omitempty"`
+	Name        string              `bson:"-"`
 	Id          ChecklistItemId
 }
 
@@ -133,12 +135,7 @@ func (m *ChecklistModel) Insert(
 	user User,
 ) error {
 	coll := m.getCollection()
-	doc := createChecklistDocument(
-		checklist,
-		user.ID,
-		user.StoreId,
-	)
-
+	doc := createChecklistDocument(checklist, user.ID, user.StoreId)
 	_, err := coll.InsertOne(ctx, doc)
 	if err != nil {
 		var writeException mongo.WriteException
@@ -154,6 +151,17 @@ func (m *ChecklistModel) Insert(
 	return nil
 }
 
+func (m *ChecklistModel) updateChecklistDocument(
+	ctx context.Context,
+	documentId primitive.ObjectID,
+	update bson.M,
+) error {
+	coll := m.getCollection()
+	filter := bson.M{"_id": documentId}
+	_, err := coll.UpdateOne(ctx, filter, update)
+	return err
+}
+
 // Update updates the checklist property of a checklist document
 // with the given documentId.
 func (m *ChecklistModel) Update(
@@ -161,14 +169,19 @@ func (m *ChecklistModel) Update(
 	documentId primitive.ObjectID,
 	checklist Checklist,
 ) error {
-	coll := m.getCollection()
-	filter := bson.M{"_id": documentId}
 	update := bson.M{"$set": bson.M{"checklist": checklist}}
-	_, err := coll.UpdateOne(ctx, filter, update)
-	if err != nil {
-		return err
-	}
-	return nil
+	return m.updateChecklistDocument(ctx, documentId, update)
+}
+
+// SubmitChecklist updates the checklist and
+// sets complete fields of a checklist document to true.
+func (m *ChecklistModel) SubmitChecklist(
+	ctx context.Context,
+	documentId primitive.ObjectID,
+	checklist Checklist,
+) error {
+	update := bson.M{"$set": bson.M{"complete": true, "checklist": checklist}}
+	return m.updateChecklistDocument(ctx, documentId, update)
 }
 
 // Get retrieves a checklist document by its documentId.
@@ -248,4 +261,42 @@ func (m *ChecklistModel) GetRecentActiveChecklist(
 		return nil, err
 	}
 	return &doc, nil
+}
+
+// //////// Form //////////
+type ChecklistForm struct {
+	validator.Validator `form:"-"`
+	BrakePad            string `form:"brake-pad"`
+	Chain               string `form:"chain"`
+	Tires               string `form:"tires"`
+	Cassette            string `form:"cassette"`
+	CablesHousing       string `form:"cables-housing"`
+	Tubes               string `form:"tubes"`
+	ChainRing           string `form:"chain-ring"`
+	FrontWheel          string `form:"front-wheel"`
+	PadFunction         string `form:"pad-function"`
+	Derailleur          string `form:"derailleur"`
+	RearWheel           string `form:"rear-wheel"`
+	RotorRim            string `form:"rotor-rim"`
+	Hanger              string `form:"hanger"`
+	Shifting            string `form:"shifting"`
+}
+
+func (cl ChecklistForm) ConvertFormToChecklist() Checklist {
+	return Checklist{
+		BrakePad:      ChecklistItem{Status: ChecklistItemStatus(cl.BrakePad), Name: "Brake Pad", Id: BrakePad},
+		Chain:         ChecklistItem{Status: ChecklistItemStatus(cl.Chain), Name: "Chain", Id: Chain},
+		Tires:         ChecklistItem{Status: ChecklistItemStatus(cl.Tires), Name: "Tires", Id: Tires},
+		Cassette:      ChecklistItem{Status: ChecklistItemStatus(cl.Cassette), Name: "Cassette", Id: Cassette},
+		CablesHousing: ChecklistItem{Status: ChecklistItemStatus(cl.CablesHousing), Name: "Cables Housing", Id: CablesHousing},
+		Tubes:         ChecklistItem{Status: ChecklistItemStatus(cl.Tubes), Name: "Tubes", Id: Tubes},
+		ChainRing:     ChecklistItem{Status: ChecklistItemStatus(cl.ChainRing), Name: "Chain Ring", Id: ChainRing},
+		FrontWheel:    ChecklistItem{Status: ChecklistItemStatus(cl.FrontWheel), Name: "Front Wheel", Id: FrontWheel},
+		PadFunction:   ChecklistItem{Status: ChecklistItemStatus(cl.PadFunction), Name: "Pad Function", Id: PadFunction},
+		Derailleur:    ChecklistItem{Status: ChecklistItemStatus(cl.Derailleur), Name: "Derailleur", Id: Derailleur},
+		RearWheel:     ChecklistItem{Status: ChecklistItemStatus(cl.RearWheel), Name: "Rear Wheel", Id: RearWheel},
+		RotorRim:      ChecklistItem{Status: ChecklistItemStatus(cl.RotorRim), Name: "Rotor Rim", Id: RotorRim},
+		Hanger:        ChecklistItem{Status: ChecklistItemStatus(cl.Hanger), Name: "Hanger", Id: Hanger},
+		Shifting:      ChecklistItem{Status: ChecklistItemStatus(cl.Shifting), Name: "Shifting", Id: Shifting},
+	}
 }

@@ -44,5 +44,7 @@ func (app *application) routes() http.Handler {
 	r.Post("/user/login", app.handlePostUserLogin)
 	// r.Get("/checklist", app.getChecklistDisplayHandler)
 
+	r.Post("/checklist", app.postChecklist)
+
 	return r
 }

@@ -4,6 +4,7 @@ import (
 	"errors"
 	"net/http"
 
+	"github.com/timenglesf/bike-checkover-checklist/internal/models"
 	"github.com/timenglesf/bike-checkover-checklist/internal/shared"
 	"github.com/timenglesf/bike-checkover-checklist/internal/validator"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -107,6 +108,42 @@ func (app *application) handleNotFound(w http.ResponseWriter, r *http.Request) {
 	data := app.newTemplateData(r)
 	app.logger.Info("Page Not Found")
 	app.renderPage(w, r, app.pageTemplates.NotFound, "Page Not Found", &data)
+}
+
+func (app *application) postChecklist(w http.ResponseWriter, r *http.Request) {
+	// init form struct
+	var form models.ChecklistForm
+	// decode form
+	if err := app.decodeForm(r, &form); err != nil {
+		app.clientError(w, http.StatusBadRequest, "Error decoding form", err)
+		return
+	}
+
+	// logged in user's id
+	userIdStr := app.sessionManager.GetString(r.Context(), SessionUserID)
+
+	// convert to ObjectID
+	userId, err := primitive.ObjectIDFromHex(userIdStr)
+	if err != nil {
+		app.logger.Error("error converting userId", "userId", userIdStr, "err", err)
+		app.clientError(w, http.StatusUnprocessableEntity, "error", err)
+	}
+
+	// get most recent active checklist document
+	clDoc, err := app.checklist.GetRecentActiveChecklist(r.Context(), userId)
+	if err != nil {
+		app.serverError(w, r, err)
+		return
+	}
+
+	// convert form to checklist
+	cl := form.ConvertFormToChecklist()
+
+	// submit and complete checklist
+	if err := app.checklist.SubmitChecklist(r.Context(), clDoc.ID, cl); err != nil {
+		app.serverError(w, r, err)
+		return
+	}
 }
 
 // TMP
