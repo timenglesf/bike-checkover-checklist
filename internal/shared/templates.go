@@ -30,12 +30,13 @@ type FlashMessage struct {
 type TemplateData struct {
 	// IsAuthenticated bool
 	// IsAdmin         bool
-	Flash           *FlashMessage
-	PinForm         PinForm
-	Date            time.Time
-	IsAuthenticated bool
-	User            *models.User
-	CheckList       *models.Checklist
+	Flash               *FlashMessage
+	PinForm             PinForm
+	Date                time.Time
+	IsAuthenticated     bool
+	User                *models.User
+	Checklist           *models.Checklist
+	ChecklistDocumentId string
 	//	CSRFToken   string
 	CurrentYear int
 }

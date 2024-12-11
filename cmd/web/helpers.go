@@ -44,14 +44,20 @@ func (app *application) newTemplateData(r *http.Request) shared.TemplateData {
 		Date:            time.Now(),
 		CurrentYear:     time.Now().Year(),
 		Flash:           &shared.FlashMessage{},
-		CheckList:       models.CreateChecklist(),
+		Checklist:       models.CreateChecklist(),
 		IsAuthenticated: app.isAuthenticated(r),
 		// IsAdmin:         app.isAdmin(r),
 		// CSRFToken:       nosurf.Token(r),
 	}
 }
 
-func (app *application) renderPage(w http.ResponseWriter, r *http.Request, templateFunc func(data *shared.TemplateData) templ.Component, title string, data *shared.TemplateData) {
+func (app *application) renderPage(
+	w http.ResponseWriter,
+	r *http.Request,
+	templateFunc func(data *shared.TemplateData) templ.Component,
+	title string,
+	data *shared.TemplateData,
+) {
 	page := templateFunc(data)
 	base := app.pageTemplates.Base(title, page, data)
 	err := base.Render(r.Context(), w)
