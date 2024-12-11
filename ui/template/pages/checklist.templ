@@ -7,20 +7,22 @@ import (
 
 templ CheckList(d *shared.TemplateData) {
 	<h1 class="mb-8 text-3xl text-center">Bike Checklist</h1>
-	<ul class="flex flex-col gap-4 mx-2">
-		@component.CheckListItem(d.CheckList.BrakePad.Id, d.CheckList.BrakePad.Name, d.CheckList.BrakePad.Description)
-		@component.CheckListItem(d.CheckList.Chain.Id, d.CheckList.Chain.Name, d.CheckList.Chain.Description)
-		@component.CheckListItem(d.CheckList.Tires.Id, d.CheckList.Tires.Name, d.CheckList.Tires.Description)
-		@component.CheckListItem(d.CheckList.Cassette.Id, d.CheckList.Cassette.Name, d.CheckList.Cassette.Description)
-		@component.CheckListItem(d.CheckList.CablesHousing.Id, d.CheckList.CablesHousing.Name, d.CheckList.CablesHousing.Description)
-		@component.CheckListItem(d.CheckList.Tubes.Id, d.CheckList.Tubes.Name, d.CheckList.Tubes.Description)
-		@component.CheckListItem(d.CheckList.ChainRing.Id, d.CheckList.ChainRing.Name, d.CheckList.ChainRing.Description)
-		@component.CheckListItem(d.CheckList.FrontWheel.Id, d.CheckList.FrontWheel.Name, d.CheckList.FrontWheel.Description)
-		@component.CheckListItem(d.CheckList.PadFunction.Id, d.CheckList.PadFunction.Name, d.CheckList.PadFunction.Description)
-		@component.CheckListItem(d.CheckList.Derailleur.Id, d.CheckList.Derailleur.Name, d.CheckList.Derailleur.Description)
-		@component.CheckListItem(d.CheckList.RearWheel.Id, d.CheckList.RearWheel.Name, d.CheckList.RearWheel.Description)
-		@component.CheckListItem(d.CheckList.RotorRim.Id, d.CheckList.RotorRim.Name, d.CheckList.RotorRim.Description)
-		@component.CheckListItem(d.CheckList.Hanger.Id, d.CheckList.Hanger.Name, d.CheckList.Hanger.Description)
-		@component.CheckListItem(d.CheckList.Shifting.Id, d.CheckList.Shifting.Name, d.CheckList.Shifting.Description)
-	</ul>
+	<form>
+		<ul class="flex flex-col gap-4 mx-2">
+			@component.ChecklistItem(d.Checklist.BrakePad.Id, d.Checklist.BrakePad.Status, d.Checklist.BrakePad.Name, d.Checklist.BrakePad.Description)
+			@component.ChecklistItem(d.Checklist.Chain.Id, d.Checklist.Chain.Status, d.Checklist.Chain.Name, d.Checklist.Chain.Description)
+			@component.ChecklistItem(d.Checklist.Tires.Id, d.Checklist.Tires.Status, d.Checklist.Tires.Name, d.Checklist.Tires.Description)
+			@component.ChecklistItem(d.Checklist.Cassette.Id, d.Checklist.Cassette.Status, d.Checklist.Cassette.Name, d.Checklist.Cassette.Description)
+			@component.ChecklistItem(d.Checklist.CablesHousing.Id, d.Checklist.CablesHousing.Status, d.Checklist.CablesHousing.Name, d.Checklist.CablesHousing.Description)
+			@component.ChecklistItem(d.Checklist.Tubes.Id, d.Checklist.Tubes.Status, d.Checklist.Tubes.Name, d.Checklist.Tubes.Description)
+			@component.ChecklistItem(d.Checklist.ChainRing.Id, d.Checklist.ChainRing.Status, d.Checklist.ChainRing.Name, d.Checklist.ChainRing.Description)
+			@component.ChecklistItem(d.Checklist.FrontWheel.Id, d.Checklist.FrontWheel.Status, d.Checklist.FrontWheel.Name, d.Checklist.FrontWheel.Description)
+			@component.ChecklistItem(d.Checklist.PadFunction.Id, d.Checklist.PadFunction.Status, d.Checklist.PadFunction.Name, d.Checklist.PadFunction.Description)
+			@component.ChecklistItem(d.Checklist.Derailleur.Id, d.Checklist.Derailleur.Status, d.Checklist.Derailleur.Name, d.Checklist.Derailleur.Description)
+			@component.ChecklistItem(d.Checklist.RearWheel.Id, d.Checklist.RearWheel.Status, d.Checklist.RearWheel.Name, d.Checklist.RearWheel.Description)
+			@component.ChecklistItem(d.Checklist.RotorRim.Id, d.Checklist.RotorRim.Status, d.Checklist.RotorRim.Name, d.Checklist.RotorRim.Description)
+			@component.ChecklistItem(d.Checklist.Hanger.Id, d.Checklist.Hanger.Status, d.Checklist.Hanger.Name, d.Checklist.Hanger.Description)
+			@component.ChecklistItem(d.Checklist.Shifting.Id, d.Checklist.Shifting.Status, d.Checklist.Shifting.Name, d.Checklist.Shifting.Description)
+		</ul>
+	</form>
 }

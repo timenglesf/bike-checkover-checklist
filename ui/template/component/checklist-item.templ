@@ -2,20 +2,32 @@ package component
 
 import "github.com/timenglesf/bike-checkover-checklist/internal/models"
 
-templ CheckListItem(id models.ChecklistItemId, name, desc string) {
+templ ChecklistItem(id models.ChecklistItemId, itemStatus models.ChecklistItemStatus, name, desc string) {
 	<li class="border-2 border-zinc-600 rounded-md px-2 py-1 shadow-md">
 		<p class="text-xl">{ desc }</p>
 		<div class="flex gap-2">
 			<label class="label" for={ string(id) + "-y" }>
-				<input type="radio" id={ string(id) + "-y" } name={ string(id) } value="y" class="radio radio-lg radio-info"/>
+				if itemStatus == models.Pass {
+					<input type="radio" id={ string(id) + "-y" } name={ string(id) } value="y" class="radio radio-lg radio-info" checked/>
+				} else {
+					<input type="radio" id={ string(id) + "-y" } name={ string(id) } value="y" class="radio radio-lg radio-info"/>
+				}
 				<span class="text-lg font-semibold">Y</span>
 			</label>
 			<label class="label" for={ string(id) + "-n" }>
-				<input type="radio" id={ string(id) + "-n" } name={ string(id) } value="n" class="radio radio-lg radio-error"/>
+				if itemStatus == models.Fail {
+					<input type="radio" id={ string(id) + "-n" } name={ string(id) } value="n" class="radio radio-lg radio-error" checked/>
+				} else {
+					<input type="radio" id={ string(id) + "-n" } name={ string(id) } value="n" class="radio radio-lg radio-error"/>
+				}
 				<span class="text-lg font-semibold">N</span>
 			</label>
 			<label class="label" for={ string(id) + "-na" }>
-				<input type="radio" id={ string(id) + "-na" } name={ string(id) } value="na" class="radio radio-lg radio-warning"/>
+				if itemStatus == models.NotApplicable {
+					<input type="radio" id={ string(id) + "-na" } name={ string(id) } value="na" class="radio radio-lg radio-warning" checked/>
+				} else {
+					<input type="radio" id={ string(id) + "-na" } name={ string(id) } value="na" class="radio radio-lg radio-warning"/>
+				}
 				<span class="text-lg font-semibold">N/A</span>
 			</label>
 		</div>
