@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.5](https://github.com/timenglesf/bike-checkover-checklist/compare/v0.2.4...v0.2.5) (2024-12-13)
+
+### Features
+
+- add checklist submission functionality ([c36512e](https://github.com/timenglesf/bike-checkover-checklist/commit/c36512e65d24029b5455edadee852f41857766bb))
+- checklist updates stored in db ([fbce769](https://github.com/timenglesf/bike-checkover-checklist/commit/fbce769a44a2b11737c257c60ac59f624118e2c9))
+
+### Bug Fixes
+
+- comment out unused test helpers to be used in future ([3225dac](https://github.com/timenglesf/bike-checkover-checklist/commit/3225dac9d8663df7456a70988252c66af0405613))
+
 ### [0.2.4](https://github.com/timenglesf/bike-checkover-checklist/compare/v0.2.3...v0.2.4) (2024-12-11)
 
 ### Features

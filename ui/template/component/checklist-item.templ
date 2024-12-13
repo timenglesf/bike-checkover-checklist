@@ -8,25 +8,25 @@ templ ChecklistItem(id models.ChecklistItemId, itemStatus models.ChecklistItemSt
 		<div class="flex gap-2">
 			<label class="label" for={ string(id) + "-y" }>
 				if itemStatus == models.Pass {
-					<input type="radio" id={ string(id) + "-y" } name={ string(id) } value="y" class="radio radio-lg radio-info" checked/>
+					<input type="radio" id={ string(id) + "-y" } name={ string(id) } value={ string(models.Pass) } class="radio radio-lg radio-info" checked/>
 				} else {
-					<input type="radio" id={ string(id) + "-y" } name={ string(id) } value="y" class="radio radio-lg radio-info"/>
+					<input type="radio" id={ string(id) + "-y" } name={ string(id) } value={ string(models.Pass) } class="radio radio-lg radio-info"/>
 				}
 				<span class="text-lg font-semibold">Y</span>
 			</label>
 			<label class="label" for={ string(id) + "-n" }>
 				if itemStatus == models.Fail {
-					<input type="radio" id={ string(id) + "-n" } name={ string(id) } value="n" class="radio radio-lg radio-error" checked/>
+					<input type="radio" id={ string(id) + "-n" } name={ string(id) } value={ string(models.Fail) } class="radio radio-lg radio-error" checked/>
 				} else {
-					<input type="radio" id={ string(id) + "-n" } name={ string(id) } value="n" class="radio radio-lg radio-error"/>
+					<input type="radio" id={ string(id) + "-n" } name={ string(id) } value={ string(models.Fail) } class="radio radio-lg radio-error"/>
 				}
 				<span class="text-lg font-semibold">N</span>
 			</label>
 			<label class="label" for={ string(id) + "-na" }>
 				if itemStatus == models.NotApplicable {
-					<input type="radio" id={ string(id) + "-na" } name={ string(id) } value="na" class="radio radio-lg radio-warning" checked/>
+					<input type="radio" id={ string(id) + "-na" } name={ string(id) } value={ string(models.NotApplicable) } class="radio radio-lg radio-warning" checked/>
 				} else {
-					<input type="radio" id={ string(id) + "-na" } name={ string(id) } value="na" class="radio radio-lg radio-warning"/>
+					<input type="radio" id={ string(id) + "-na" } name={ string(id) } value={ string(models.NotApplicable) } class="radio radio-lg radio-warning"/>
 				}
 				<span class="text-lg font-semibold">N/A</span>
 			</label>
