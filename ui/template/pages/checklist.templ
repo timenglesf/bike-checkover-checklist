@@ -8,7 +8,7 @@ import (
 templ CheckList(d *shared.TemplateData) {
 	<h1 class="mb-8 text-3xl text-center">Bike Checklist</h1>
 	<form method="POST" action="/checklist">
-		<ul class="flex flex-col gap-4 mx-2">
+		<ul class="flex flex-col gap-4 mx-2" hx-put="/checklist" hx-trigger="change from:ul throttle:1s" hx-swap="none">
 			@component.ChecklistItem(d.Checklist.BrakePad.Id, d.Checklist.BrakePad.Status, d.Checklist.BrakePad.Name, d.Checklist.BrakePad.Description)
 			@component.ChecklistItem(d.Checklist.Chain.Id, d.Checklist.Chain.Status, d.Checklist.Chain.Name, d.Checklist.Chain.Description)
 			@component.ChecklistItem(d.Checklist.Tires.Id, d.Checklist.Tires.Status, d.Checklist.Tires.Name, d.Checklist.Tires.Description)

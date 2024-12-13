@@ -45,6 +45,7 @@ func (app *application) routes() http.Handler {
 	// r.Get("/checklist", app.getChecklistDisplayHandler)
 
 	r.Post("/checklist", app.postChecklist)
+	r.Put("/checklist", app.putChecklist)
 
 	return r
 }

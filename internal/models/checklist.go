@@ -169,7 +169,24 @@ func (m *ChecklistModel) Update(
 	documentId primitive.ObjectID,
 	checklist Checklist,
 ) error {
-	update := bson.M{"$set": bson.M{"checklist": checklist}}
+	update := bson.M{
+		"$set": bson.M{
+			"checklist.brakePad.status":      checklist.BrakePad.Status,
+			"checklist.chain.status":         checklist.Chain.Status,
+			"checklist.tires.status":         checklist.Tires.Status,
+			"checklist.cassette.status":      checklist.Cassette.Status,
+			"checklist.cablesHousing.status": checklist.CablesHousing.Status,
+			"checklist.tubes.status":         checklist.Tubes.Status,
+			"checklist.chainRing.status":     checklist.ChainRing.Status,
+			"checklist.frontWheel.status":    checklist.FrontWheel.Status,
+			"checklist.padFunction.status":   checklist.PadFunction.Status,
+			"checklist.derailleur.status":    checklist.Derailleur.Status,
+			"checklist.rearWheel.status":     checklist.RearWheel.Status,
+			"checklist.rotorRim.status":      checklist.RotorRim.Status,
+			"checklist.hanger.status":        checklist.Hanger.Status,
+			"checklist.shifting.status":      checklist.Shifting.Status,
+		},
+	}
 	return m.updateChecklistDocument(ctx, documentId, update)
 }
 

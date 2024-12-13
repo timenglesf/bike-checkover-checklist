@@ -34,7 +34,7 @@ func CheckList(d *shared.TemplateData) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<h1 class=\"mb-8 text-3xl text-center\">Bike Checklist</h1><form method=\"POST\" action=\"/checklist\"><ul class=\"flex flex-col gap-4 mx-2\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<h1 class=\"mb-8 text-3xl text-center\">Bike Checklist</h1><form method=\"POST\" action=\"/checklist\"><ul class=\"flex flex-col gap-4 mx-2\" hx-put=\"/checklist\" hx-trigger=\"change from:ul throttle:1s\" hx-swap=\"none\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

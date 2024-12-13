@@ -34,7 +34,7 @@ func Base(title string, page templ.Component, data *shared.TemplateData) templ.C
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<!doctype html><html lang=\"en\" data-theme=\"acid\"><head><!-- Metadata --><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><meta name=\"description\" content=\"Bike Check Over Checklist\"><meta name=\"author\" content=\"Tim Engle\"><title>Bike Checkover Check List</title><!-- Stylesheets --><link rel=\"stylesheet\" href=\"/static/dist/style/styles.css\"><!-- Fonts --><!-- Scripts --></head><body class=\"flex flex-col min-h-screen bg-base-100 text-base-content\"><div id=\"response\"></div><main class=\"flex-grow mt-6 mb-12 tracking-tighter\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<!doctype html><html lang=\"en\" data-theme=\"acid\"><head><!-- Metadata --><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><meta name=\"description\" content=\"Bike Check Over Checklist\"><meta name=\"author\" content=\"Tim Engle\"><title>Bike Checkover Check List</title><!-- Stylesheets --><link rel=\"stylesheet\" href=\"/static/dist/style/styles.css\"><!-- Fonts --><!-- Scripts --><script src=\"https://unpkg.com/htmx.org@2.0.3\" integrity=\"sha384-0895/pl2MU10Hqc6jd4RvrthNlDiE9U1tWmX7WRESftEDRosgxNsQG/Ze9YMRzHq\" crossorigin=\"anonymous\"></script></head><body class=\"flex flex-col min-h-screen bg-base-100 text-base-content\"><div id=\"response\"></div><main class=\"flex-grow mt-6 mb-12 tracking-tighter\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
