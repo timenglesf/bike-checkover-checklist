@@ -52,9 +52,6 @@ func (app *application) handleDisplayMainPage(w http.ResponseWriter, r *http.Req
 	data.Checklist = &cl.Checklist
 	data.ChecklistDocumentId = cl.ID.Hex()
 	// save the new checklist to the db
-
-	app.logger.Info("checklist found", "checklist", data.Checklist.Notes)
-
 	app.renderPage(w, r, app.pageTemplates.CheckList, "Bike Intake Checklist", &data)
 }
 
