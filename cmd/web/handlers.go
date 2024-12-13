@@ -138,11 +138,12 @@ func (app *application) postChecklist(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// convert form to checklist
+	// convert form to checklist and bike description
 	cl := form.ConvertFormToChecklist()
+	desc := form.ConvertFormToBikeDescription()
 
 	// submit and complete checklist
-	if err := app.checklist.SubmitChecklist(r.Context(), clDoc.ID, cl); err != nil {
+	if err := app.checklist.SubmitChecklist(r.Context(), clDoc.ID, cl, desc); err != nil {
 		app.serverError(w, r, err)
 		return
 	}

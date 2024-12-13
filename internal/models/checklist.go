@@ -94,13 +94,20 @@ func CreateChecklist() *Checklist {
 	}
 }
 
+type BikeDescritoion struct {
+	Brand string `bson:"brand"`
+	Model string `bson:"model"`
+	Color string `bson:"color"`
+}
+
 type ChecklistDocument struct {
-	Checklist Checklist          `bson:"checklist"`
-	ID        primitive.ObjectID `bson:"_id,omitempty"`
-	UserId    primitive.ObjectID `bson:"userId"`
-	StoreId   string             `bson:"storeId"`
-	CreatedAt primitive.DateTime `bson:"createdAt"`
-	Complete  bool               `bson:"complete"`
+	Checklist   Checklist          `bson:"checklist"`
+	ID          primitive.ObjectID `bson:"_id,omitempty"`
+	UserId      primitive.ObjectID `bson:"userId"`
+	StoreId     string             `bson:"storeId"`
+	CreatedAt   primitive.DateTime `bson:"createdAt"`
+	Complete    bool               `bson:"complete"`
+	Description BikeDescritoion    `bson:"description,omitempty"`
 }
 
 type ChecklistModel struct {
@@ -199,8 +206,9 @@ func (m *ChecklistModel) SubmitChecklist(
 	ctx context.Context,
 	documentId primitive.ObjectID,
 	checklist Checklist,
+	description BikeDescritoion,
 ) error {
-	update := bson.M{"$set": bson.M{"complete": true, "checklist": checklist}}
+	update := bson.M{"$set": bson.M{"complete": true, "checklist": checklist, "description": description}}
 	return m.updateChecklistDocument(ctx, documentId, update)
 }
 
@@ -301,6 +309,9 @@ type ChecklistForm struct {
 	Hanger              string `form:"hanger"`
 	Shifting            string `form:"shifting"`
 	Notes               string `form:"notes"`
+	Brand               string `form:"brand"`
+	Model               string `form:"model"`
+	Color               string `form:"color"`
 }
 
 func (cl ChecklistForm) ConvertFormToChecklist() Checklist {
@@ -320,5 +331,13 @@ func (cl ChecklistForm) ConvertFormToChecklist() Checklist {
 		Hanger:        ChecklistItem{Status: ChecklistItemStatus(cl.Hanger), Name: "Hanger", Id: Hanger},
 		Shifting:      ChecklistItem{Status: ChecklistItemStatus(cl.Shifting), Name: "Shifting", Id: Shifting},
 		Notes:         cl.Notes,
+	}
+}
+
+func (cl ChecklistForm) ConvertFormToBikeDescription() BikeDescritoion {
+	return BikeDescritoion{
+		Brand: cl.Brand,
+		Model: cl.Model,
+		Color: cl.Color,
 	}
 }
