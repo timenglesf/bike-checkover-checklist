@@ -53,6 +53,8 @@ func (app *application) handleDisplayMainPage(w http.ResponseWriter, r *http.Req
 	data.ChecklistDocumentId = cl.ID.Hex()
 	// save the new checklist to the db
 
+	app.logger.Info("checklist found", "checklist", data.Checklist.Notes)
+
 	app.renderPage(w, r, app.pageTemplates.CheckList, "Bike Intake Checklist", &data)
 }
 
@@ -154,6 +156,7 @@ func (app *application) putChecklist(w http.ResponseWriter, r *http.Request) {
 		app.clientError(w, http.StatusBadRequest, "Error decoding form", err)
 		return
 	}
+	app.logger.Info("form", "form", form)
 	// logged in user's id
 	userIdStr := app.sessionManager.GetString(r.Context(), SessionUserID)
 	// convert to ObjectID

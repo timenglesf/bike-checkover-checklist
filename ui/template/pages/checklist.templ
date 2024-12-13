@@ -24,9 +24,33 @@ templ CheckList(d *shared.TemplateData) {
 			@component.ChecklistItem(d.Checklist.Hanger.Id, d.Checklist.Hanger.Status, d.Checklist.Hanger.Name, d.Checklist.Hanger.Description)
 			@component.ChecklistItem(d.Checklist.Shifting.Id, d.Checklist.Shifting.Status, d.Checklist.Shifting.Name, d.Checklist.Shifting.Description)
 		</ul>
+		<dialog id="my_modal_1" class="modal">
+			<div class="modal-box">
+				<h3 class="text-lg font-bold">Notes</h3>
+				<p class="py-4">Press ESC key or click the button below to close</p>
+				<textarea
+					type="text"
+					name="notes"
+					id="note"
+					class="h-20 w-full p-2 border border-gray-300 rounded-md"
+					placeholder="Enter note here"
+					style="resize: none;"
+				>{ d.Checklist.Notes }</textarea>
+				<div class="modal-action">
+					<!-- if there is a button in form, it will close the modal -->
+					<button type="button" class="btn" onclick="my_modal_1.close()">Close</button>
+				</div>
+			</div>
+		</dialog>
 		<div class="flex mt-6 justify-around">
 			<button type="submit" class="btn btn-info">Submit</button>
 			<button type="reset" class="btn btn-error">Reset</button>
 		</div>
 	</form>
+	<button
+		type="button"
+		id="note-btn"
+		class="btn btn-success h-20 w-20 text-3xl rounded-full fixed bottom-6 right-2 shadow-lg"
+		onclick="my_modal_1.showModal()"
+	>✏</button>
 }

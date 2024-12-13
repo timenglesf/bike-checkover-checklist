@@ -71,6 +71,7 @@ type Checklist struct {
 	RotorRim      ChecklistItem `bson:"rotorRim"`
 	Hanger        ChecklistItem `bson:"hanger"`
 	Shifting      ChecklistItem `bson:"shifting"`
+	Notes         string        `bson:"notes,omitempty"`
 }
 
 func CreateChecklist() *Checklist {
@@ -89,6 +90,7 @@ func CreateChecklist() *Checklist {
 		RotorRim:      CreateChecklistItem("Rotor/Rim", RotorRim, "Rotor/Rim pass inspection"),
 		Hanger:        CreateChecklistItem("Hanger", Hanger, "Hanger pass inspection"),
 		Shifting:      CreateChecklistItem("Shifting", Shifting, "Shifting pass inspection"),
+		Notes:         "",
 	}
 }
 
@@ -185,6 +187,7 @@ func (m *ChecklistModel) Update(
 			"checklist.rotorRim.status":      checklist.RotorRim.Status,
 			"checklist.hanger.status":        checklist.Hanger.Status,
 			"checklist.shifting.status":      checklist.Shifting.Status,
+			"checklist.notes":                checklist.Notes,
 		},
 	}
 	return m.updateChecklistDocument(ctx, documentId, update)
@@ -297,6 +300,7 @@ type ChecklistForm struct {
 	RotorRim            string `form:"rotor-rim"`
 	Hanger              string `form:"hanger"`
 	Shifting            string `form:"shifting"`
+	Notes               string `form:"notes"`
 }
 
 func (cl ChecklistForm) ConvertFormToChecklist() Checklist {
@@ -315,5 +319,6 @@ func (cl ChecklistForm) ConvertFormToChecklist() Checklist {
 		RotorRim:      ChecklistItem{Status: ChecklistItemStatus(cl.RotorRim), Name: "Rotor Rim", Id: RotorRim},
 		Hanger:        ChecklistItem{Status: ChecklistItemStatus(cl.Hanger), Name: "Hanger", Id: Hanger},
 		Shifting:      ChecklistItem{Status: ChecklistItemStatus(cl.Shifting), Name: "Shifting", Id: Shifting},
+		Notes:         cl.Notes,
 	}
 }
