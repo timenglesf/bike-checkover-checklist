@@ -35,7 +35,7 @@ type TemplateData struct {
 	Date                time.Time
 	IsAuthenticated     bool
 	User                *models.User
-	Checklist           *models.Checklist
+	ChecklistDisplay    *models.ChecklistDisplay
 	ChecklistDocumentId string
 	//	CSRFToken   string
 	CurrentYear int

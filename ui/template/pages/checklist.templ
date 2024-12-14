@@ -9,25 +9,24 @@ templ CheckList(d *shared.TemplateData) {
 	<h1 class="mb-8 text-3xl text-center">Bike Checklist</h1>
 	<form method="POST" action="/checklist">
 		<ul class="flex flex-col gap-4 mx-2" hx-put="/checklist" hx-trigger="change from:ul throttle:1s" hx-swap="none">
-			@component.ChecklistItem(d.Checklist.BrakePad.Id, d.Checklist.BrakePad.Status, d.Checklist.BrakePad.Name, d.Checklist.BrakePad.Description)
-			@component.ChecklistItem(d.Checklist.Chain.Id, d.Checklist.Chain.Status, d.Checklist.Chain.Name, d.Checklist.Chain.Description)
-			@component.ChecklistItem(d.Checklist.Tires.Id, d.Checklist.Tires.Status, d.Checklist.Tires.Name, d.Checklist.Tires.Description)
-			@component.ChecklistItem(d.Checklist.Cassette.Id, d.Checklist.Cassette.Status, d.Checklist.Cassette.Name, d.Checklist.Cassette.Description)
-			@component.ChecklistItem(d.Checklist.CablesHousing.Id, d.Checklist.CablesHousing.Status, d.Checklist.CablesHousing.Name, d.Checklist.CablesHousing.Description)
-			@component.ChecklistItem(d.Checklist.Tubes.Id, d.Checklist.Tubes.Status, d.Checklist.Tubes.Name, d.Checklist.Tubes.Description)
-			@component.ChecklistItem(d.Checklist.ChainRing.Id, d.Checklist.ChainRing.Status, d.Checklist.ChainRing.Name, d.Checklist.ChainRing.Description)
-			@component.ChecklistItem(d.Checklist.FrontWheel.Id, d.Checklist.FrontWheel.Status, d.Checklist.FrontWheel.Name, d.Checklist.FrontWheel.Description)
-			@component.ChecklistItem(d.Checklist.PadFunction.Id, d.Checklist.PadFunction.Status, d.Checklist.PadFunction.Name, d.Checklist.PadFunction.Description)
-			@component.ChecklistItem(d.Checklist.Derailleur.Id, d.Checklist.Derailleur.Status, d.Checklist.Derailleur.Name, d.Checklist.Derailleur.Description)
-			@component.ChecklistItem(d.Checklist.RearWheel.Id, d.Checklist.RearWheel.Status, d.Checklist.RearWheel.Name, d.Checklist.RearWheel.Description)
-			@component.ChecklistItem(d.Checklist.RotorRim.Id, d.Checklist.RotorRim.Status, d.Checklist.RotorRim.Name, d.Checklist.RotorRim.Description)
-			@component.ChecklistItem(d.Checklist.Hanger.Id, d.Checklist.Hanger.Status, d.Checklist.Hanger.Name, d.Checklist.Hanger.Description)
-			@component.ChecklistItem(d.Checklist.Shifting.Id, d.Checklist.Shifting.Status, d.Checklist.Shifting.Name, d.Checklist.Shifting.Description)
+			@component.ChecklistItem(d.ChecklistDisplay.BrakePad.Id, d.ChecklistDisplay.BrakePad.Status, d.ChecklistDisplay.BrakePad.Name, d.ChecklistDisplay.BrakePad.Description)
+			@component.ChecklistItem(d.ChecklistDisplay.Chain.Id, d.ChecklistDisplay.Chain.Status, d.ChecklistDisplay.Chain.Name, d.ChecklistDisplay.Chain.Description)
+			@component.ChecklistItem(d.ChecklistDisplay.Tires.Id, d.ChecklistDisplay.Tires.Status, d.ChecklistDisplay.Tires.Name, d.ChecklistDisplay.Tires.Description)
+			@component.ChecklistItem(d.ChecklistDisplay.Cassette.Id, d.ChecklistDisplay.Cassette.Status, d.ChecklistDisplay.Cassette.Name, d.ChecklistDisplay.Cassette.Description)
+			@component.ChecklistItem(d.ChecklistDisplay.CablesHousing.Id, d.ChecklistDisplay.CablesHousing.Status, d.ChecklistDisplay.CablesHousing.Name, d.ChecklistDisplay.CablesHousing.Description)
+			@component.ChecklistItem(d.ChecklistDisplay.Tubes.Id, d.ChecklistDisplay.Tubes.Status, d.ChecklistDisplay.Tubes.Name, d.ChecklistDisplay.Tubes.Description)
+			@component.ChecklistItem(d.ChecklistDisplay.ChainRing.Id, d.ChecklistDisplay.ChainRing.Status, d.ChecklistDisplay.ChainRing.Name, d.ChecklistDisplay.ChainRing.Description)
+			@component.ChecklistItem(d.ChecklistDisplay.FrontWheel.Id, d.ChecklistDisplay.FrontWheel.Status, d.ChecklistDisplay.FrontWheel.Name, d.ChecklistDisplay.FrontWheel.Description)
+			@component.ChecklistItem(d.ChecklistDisplay.PadFunction.Id, d.ChecklistDisplay.PadFunction.Status, d.ChecklistDisplay.PadFunction.Name, d.ChecklistDisplay.PadFunction.Description)
+			@component.ChecklistItem(d.ChecklistDisplay.Derailleur.Id, d.ChecklistDisplay.Derailleur.Status, d.ChecklistDisplay.Derailleur.Name, d.ChecklistDisplay.Derailleur.Description)
+			@component.ChecklistItem(d.ChecklistDisplay.RearWheel.Id, d.ChecklistDisplay.RearWheel.Status, d.ChecklistDisplay.RearWheel.Name, d.ChecklistDisplay.RearWheel.Description)
+			@component.ChecklistItem(d.ChecklistDisplay.RotorRim.Id, d.ChecklistDisplay.RotorRim.Status, d.ChecklistDisplay.RotorRim.Name, d.ChecklistDisplay.RotorRim.Description)
+			@component.ChecklistItem(d.ChecklistDisplay.Hanger.Id, d.ChecklistDisplay.Hanger.Status, d.ChecklistDisplay.Hanger.Name, d.ChecklistDisplay.Hanger.Description)
+			@component.ChecklistItem(d.ChecklistDisplay.Shifting.Id, d.ChecklistDisplay.Shifting.Status, d.ChecklistDisplay.Shifting.Name, d.ChecklistDisplay.Shifting.Description)
 		</ul>
-		<dialog id="my_modal_1" class="modal">
+		<dialog id="my_modal_1" class="modal modal-top">
 			<div class="modal-box">
-				<h3 class="text-lg font-bold">Notes</h3>
-				<p class="py-4">Press ESC key or click the button below to close</p>
+				<h3 class="text-xl font-bold">Notes</h3>
 				<textarea
 					type="text"
 					name="notes"
@@ -37,17 +36,15 @@ templ CheckList(d *shared.TemplateData) {
 					style="resize: none;"
 					hx-put="/checklist"
 					hx-trigger="change from:textarea throttle:1s"
-				>{ d.Checklist.Notes }</textarea>
+				>{ d.ChecklistDisplay.Notes }</textarea>
 				<div class="modal-action">
-					<!-- if there is a button in form, it will close the modal -->
 					<button type="button" class="btn" onclick="my_modal_1.close()">Close</button>
 				</div>
 			</div>
 		</dialog>
-		<dialog id="my_modal_2" class="modal">
+		<dialog id="my_modal_2" class="modal modal-top">
 			<div class="modal-box">
-				<h3 class="text-lg font-bold">Notes</h3>
-				<p class="py-4">Press ESC key or click the button below to close</p>
+				<h3 class="text-xl font-bold">Bike Description</h3>
 				<label for="brand">
 					<span class="text-lg font-bold">Brand</span>
 					<input

@@ -38,76 +38,76 @@ func CheckList(d *shared.TemplateData) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = component.ChecklistItem(d.Checklist.BrakePad.Id, d.Checklist.BrakePad.Status, d.Checklist.BrakePad.Name, d.Checklist.BrakePad.Description).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = component.ChecklistItem(d.ChecklistDisplay.BrakePad.Id, d.ChecklistDisplay.BrakePad.Status, d.ChecklistDisplay.BrakePad.Name, d.ChecklistDisplay.BrakePad.Description).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = component.ChecklistItem(d.Checklist.Chain.Id, d.Checklist.Chain.Status, d.Checklist.Chain.Name, d.Checklist.Chain.Description).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = component.ChecklistItem(d.ChecklistDisplay.Chain.Id, d.ChecklistDisplay.Chain.Status, d.ChecklistDisplay.Chain.Name, d.ChecklistDisplay.Chain.Description).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = component.ChecklistItem(d.Checklist.Tires.Id, d.Checklist.Tires.Status, d.Checklist.Tires.Name, d.Checklist.Tires.Description).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = component.ChecklistItem(d.ChecklistDisplay.Tires.Id, d.ChecklistDisplay.Tires.Status, d.ChecklistDisplay.Tires.Name, d.ChecklistDisplay.Tires.Description).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = component.ChecklistItem(d.Checklist.Cassette.Id, d.Checklist.Cassette.Status, d.Checklist.Cassette.Name, d.Checklist.Cassette.Description).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = component.ChecklistItem(d.ChecklistDisplay.Cassette.Id, d.ChecklistDisplay.Cassette.Status, d.ChecklistDisplay.Cassette.Name, d.ChecklistDisplay.Cassette.Description).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = component.ChecklistItem(d.Checklist.CablesHousing.Id, d.Checklist.CablesHousing.Status, d.Checklist.CablesHousing.Name, d.Checklist.CablesHousing.Description).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = component.ChecklistItem(d.ChecklistDisplay.CablesHousing.Id, d.ChecklistDisplay.CablesHousing.Status, d.ChecklistDisplay.CablesHousing.Name, d.ChecklistDisplay.CablesHousing.Description).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = component.ChecklistItem(d.Checklist.Tubes.Id, d.Checklist.Tubes.Status, d.Checklist.Tubes.Name, d.Checklist.Tubes.Description).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = component.ChecklistItem(d.ChecklistDisplay.Tubes.Id, d.ChecklistDisplay.Tubes.Status, d.ChecklistDisplay.Tubes.Name, d.ChecklistDisplay.Tubes.Description).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = component.ChecklistItem(d.Checklist.ChainRing.Id, d.Checklist.ChainRing.Status, d.Checklist.ChainRing.Name, d.Checklist.ChainRing.Description).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = component.ChecklistItem(d.ChecklistDisplay.ChainRing.Id, d.ChecklistDisplay.ChainRing.Status, d.ChecklistDisplay.ChainRing.Name, d.ChecklistDisplay.ChainRing.Description).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = component.ChecklistItem(d.Checklist.FrontWheel.Id, d.Checklist.FrontWheel.Status, d.Checklist.FrontWheel.Name, d.Checklist.FrontWheel.Description).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = component.ChecklistItem(d.ChecklistDisplay.FrontWheel.Id, d.ChecklistDisplay.FrontWheel.Status, d.ChecklistDisplay.FrontWheel.Name, d.ChecklistDisplay.FrontWheel.Description).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = component.ChecklistItem(d.Checklist.PadFunction.Id, d.Checklist.PadFunction.Status, d.Checklist.PadFunction.Name, d.Checklist.PadFunction.Description).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = component.ChecklistItem(d.ChecklistDisplay.PadFunction.Id, d.ChecklistDisplay.PadFunction.Status, d.ChecklistDisplay.PadFunction.Name, d.ChecklistDisplay.PadFunction.Description).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = component.ChecklistItem(d.Checklist.Derailleur.Id, d.Checklist.Derailleur.Status, d.Checklist.Derailleur.Name, d.Checklist.Derailleur.Description).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = component.ChecklistItem(d.ChecklistDisplay.Derailleur.Id, d.ChecklistDisplay.Derailleur.Status, d.ChecklistDisplay.Derailleur.Name, d.ChecklistDisplay.Derailleur.Description).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = component.ChecklistItem(d.Checklist.RearWheel.Id, d.Checklist.RearWheel.Status, d.Checklist.RearWheel.Name, d.Checklist.RearWheel.Description).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = component.ChecklistItem(d.ChecklistDisplay.RearWheel.Id, d.ChecklistDisplay.RearWheel.Status, d.ChecklistDisplay.RearWheel.Name, d.ChecklistDisplay.RearWheel.Description).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = component.ChecklistItem(d.Checklist.RotorRim.Id, d.Checklist.RotorRim.Status, d.Checklist.RotorRim.Name, d.Checklist.RotorRim.Description).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = component.ChecklistItem(d.ChecklistDisplay.RotorRim.Id, d.ChecklistDisplay.RotorRim.Status, d.ChecklistDisplay.RotorRim.Name, d.ChecklistDisplay.RotorRim.Description).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = component.ChecklistItem(d.Checklist.Hanger.Id, d.Checklist.Hanger.Status, d.Checklist.Hanger.Name, d.Checklist.Hanger.Description).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = component.ChecklistItem(d.ChecklistDisplay.Hanger.Id, d.ChecklistDisplay.Hanger.Status, d.ChecklistDisplay.Hanger.Name, d.ChecklistDisplay.Hanger.Description).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = component.ChecklistItem(d.Checklist.Shifting.Id, d.Checklist.Shifting.Status, d.Checklist.Shifting.Name, d.Checklist.Shifting.Description).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = component.ChecklistItem(d.ChecklistDisplay.Shifting.Id, d.ChecklistDisplay.Shifting.Status, d.ChecklistDisplay.Shifting.Name, d.ChecklistDisplay.Shifting.Description).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</ul><dialog id=\"my_modal_1\" class=\"modal\"><div class=\"modal-box\"><h3 class=\"text-lg font-bold\">Notes</h3><p class=\"py-4\">Press ESC key or click the button below to close</p><textarea type=\"text\" name=\"notes\" id=\"note\" class=\"h-20 w-full p-2 border border-gray-300 rounded-md\" placeholder=\"Enter note here\" style=\"resize: none;\" hx-put=\"/checklist\" hx-trigger=\"change from:textarea throttle:1s\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</ul><dialog id=\"my_modal_1\" class=\"modal modal-top\"><div class=\"modal-box\"><h3 class=\"text-xl font-bold\">Notes</h3><textarea type=\"text\" name=\"notes\" id=\"note\" class=\"h-20 w-full p-2 border border-gray-300 rounded-md\" placeholder=\"Enter note here\" style=\"resize: none;\" hx-put=\"/checklist\" hx-trigger=\"change from:textarea throttle:1s\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var2 string
-		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(d.Checklist.Notes)
+		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(d.ChecklistDisplay.Notes)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `ui/template/pages/checklist.templ`, Line: 40, Col: 24}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `ui/template/pages/checklist.templ`, Line: 39, Col: 31}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</textarea><div class=\"modal-action\"><!-- if there is a button in form, it will close the modal --><button type=\"button\" class=\"btn\" onclick=\"my_modal_1.close()\">Close</button></div></div></dialog> <dialog id=\"my_modal_2\" class=\"modal\"><div class=\"modal-box\"><h3 class=\"text-lg font-bold\">Notes</h3><p class=\"py-4\">Press ESC key or click the button below to close</p><label for=\"brand\"><span class=\"text-lg font-bold\">Brand</span> <input type=\"text\" name=\"brand\" id=\"brand\" class=\"w-full p-2 border border-gray-300 rounded-md\" placeholder=\"Enter brand here\"></label> <label for=\"model\"><span class=\"text-lg font-bold\">Model</span> <input type=\"text\" name=\"model\" id=\"model\" class=\"w-full p-2 border border-gray-300 rounded-md\" placeholder=\"Enter model here\"></label> <label for=\"color\"><span class=\"text-lg font-bold\">Color</span> <input type=\"text\" name=\"color\" id=\"color\" class=\"w-full p-2 border border-gray-300 rounded-md\" placeholder=\"Enter color here\"></label><div class=\"modal-action\"><button type=\"submit\" class=\"btn btn-success\">Submit</button> <button type=\"button\" class=\"btn\" onclick=\"my_modal_2.close()\">Close</button></div></div></dialog><div class=\"flex mt-6 justify-around\"><button type=\"button\" id=\"description-btn\" onclick=\"my_modal_2.showModal()\" type=\"submit\" class=\"btn btn-info\">Continue</button> <button type=\"reset\" class=\"btn btn-error\">Reset</button></div></form><button type=\"button\" id=\"note-btn\" class=\"btn btn-success h-20 w-20 text-3xl rounded-full fixed bottom-6 right-2 shadow-lg\" onclick=\"my_modal_1.showModal()\">✏</button>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</textarea><div class=\"modal-action\"><button type=\"button\" class=\"btn\" onclick=\"my_modal_1.close()\">Close</button></div></div></dialog> <dialog id=\"my_modal_2\" class=\"modal modal-top\"><div class=\"modal-box\"><h3 class=\"text-xl font-bold\">Bike Description</h3><label for=\"brand\"><span class=\"text-lg font-bold\">Brand</span> <input type=\"text\" name=\"brand\" id=\"brand\" class=\"w-full p-2 border border-gray-300 rounded-md\" placeholder=\"Enter brand here\"></label> <label for=\"model\"><span class=\"text-lg font-bold\">Model</span> <input type=\"text\" name=\"model\" id=\"model\" class=\"w-full p-2 border border-gray-300 rounded-md\" placeholder=\"Enter model here\"></label> <label for=\"color\"><span class=\"text-lg font-bold\">Color</span> <input type=\"text\" name=\"color\" id=\"color\" class=\"w-full p-2 border border-gray-300 rounded-md\" placeholder=\"Enter color here\"></label><div class=\"modal-action\"><button type=\"submit\" class=\"btn btn-success\">Submit</button> <button type=\"button\" class=\"btn\" onclick=\"my_modal_2.close()\">Close</button></div></div></dialog><div class=\"flex mt-6 justify-around\"><button type=\"button\" id=\"description-btn\" onclick=\"my_modal_2.showModal()\" type=\"submit\" class=\"btn btn-info\">Continue</button> <button type=\"reset\" class=\"btn btn-error\">Reset</button></div></form><button type=\"button\" id=\"note-btn\" class=\"btn btn-success h-20 w-20 text-3xl rounded-full fixed bottom-6 right-2 shadow-lg\" onclick=\"my_modal_1.showModal()\">✏</button>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
