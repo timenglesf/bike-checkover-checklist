@@ -69,6 +69,26 @@ type Checklist struct {
 	Notes         string              `bson:"notes,omitempty" form:"notes"`
 }
 
+func CreateChecklist() *Checklist {
+	return &Checklist{
+		BrakePad:      NotApplicable,
+		Chain:         NotApplicable,
+		Tires:         NotApplicable,
+		Cassette:      NotApplicable,
+		CablesHousing: NotApplicable,
+		Tubes:         NotApplicable,
+		ChainRing:     NotApplicable,
+		FrontWheel:    NotApplicable,
+		PadFunction:   NotApplicable,
+		Derailleur:    NotApplicable,
+		RearWheel:     NotApplicable,
+		RotorRim:      NotApplicable,
+		Hanger:        NotApplicable,
+		Shifting:      NotApplicable,
+		Notes:         "",
+	}
+}
+
 // BikeDescription struct
 type BikeDescription struct {
 	Brand string `bson:"brand" form:"brand"`
@@ -133,6 +153,11 @@ func (m *ChecklistModel) updateChecklistDocument(ctx context.Context, documentId
 	filter := bson.M{"_id": documentId}
 	_, err := coll.UpdateOne(ctx, filter, update)
 	return err
+}
+
+func (m *ChecklistModel) Reset(ctx context.Context, documentId primitive.ObjectID) error {
+	update := bson.M{"$set": bson.M{"complete": false, "checklist": CreateChecklist()}}
+	return m.updateChecklistDocument(ctx, documentId, update)
 }
 
 // Update updates the checklist property of a checklist document with the given documentId.

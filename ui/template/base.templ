@@ -26,6 +26,7 @@ templ Base(title string, page templ.Component, data *shared.TemplateData) {
 			<script src="https://unpkg.com/htmx.org@2.0.3" integrity="sha384-0895/pl2MU10Hqc6jd4RvrthNlDiE9U1tWmX7WRESftEDRosgxNsQG/Ze9YMRzHq" crossorigin="anonymous"></script>
 		</head>
 		<body class="flex flex-col min-h-screen bg-base-100 text-base-content">
+			@partials.Navbar(data)
 			// @partials.PageHeader(data)
 			<div id="response"></div>
 			<main class="flex-grow mt-6 mb-12 tracking-tighter">

@@ -28,7 +28,6 @@ type FlashMessage struct {
 }
 
 type TemplateData struct {
-	// IsAuthenticated bool
 	// IsAdmin         bool
 	Flash               *FlashMessage
 	PinForm             PinForm
