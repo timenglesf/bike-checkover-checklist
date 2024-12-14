@@ -41,11 +41,11 @@ func (app *application) isAuthenticated(r *http.Request) bool {
 
 func (app *application) newTemplateData(r *http.Request) shared.TemplateData {
 	return shared.TemplateData{
-		Date:            time.Now(),
-		CurrentYear:     time.Now().Year(),
-		Flash:           &shared.FlashMessage{},
-		Checklist:       models.CreateChecklist(),
-		IsAuthenticated: app.isAuthenticated(r),
+		Date:             time.Now(),
+		CurrentYear:      time.Now().Year(),
+		Flash:            &shared.FlashMessage{},
+		ChecklistDisplay: models.CreateChecklistDisplay(),
+		IsAuthenticated:  app.isAuthenticated(r),
 		// IsAdmin:         app.isAdmin(r),
 		// CSRFToken:       nosurf.Token(r),
 	}

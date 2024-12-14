@@ -4,6 +4,7 @@ import (
 	"errors"
 	"net/http"
 
+	"github.com/go-chi/chi/v5"
 	"github.com/timenglesf/bike-checkover-checklist/internal/models"
 	"github.com/timenglesf/bike-checkover-checklist/internal/shared"
 	"github.com/timenglesf/bike-checkover-checklist/internal/validator"
@@ -28,7 +29,7 @@ func (app *application) handleDisplayMainPage(w http.ResponseWriter, r *http.Req
 		app.clientError(w, http.StatusUnprocessableEntity, "error", err)
 	}
 
-	cl, err := app.checklist.GetRecentActiveChecklist(r.Context(), userId)
+	clDoc, err := app.checklist.GetRecentActiveChecklist(r.Context(), userId)
 	if err != nil {
 		// if the error is that there is no documument use the one that is created with app.newTemplateData
 		if errors.Is(err, mongo.ErrNoDocuments) {
@@ -38,7 +39,9 @@ func (app *application) handleDisplayMainPage(w http.ResponseWriter, r *http.Req
 				app.clientError(w, http.StatusNotFound, "no user found in database", err)
 			}
 
-			if err = app.checklist.Insert(r.Context(), *data.Checklist, user); err != nil {
+			cl := data.ChecklistDisplay.ExtractChecklist()
+
+			if err = app.checklist.Insert(r.Context(), *cl, user); err != nil {
 				app.serverError(w, r, err)
 			}
 
@@ -48,9 +51,9 @@ func (app *application) handleDisplayMainPage(w http.ResponseWriter, r *http.Req
 		app.serverError(w, r, err)
 		return
 	}
-	app.logger.Info("checklist found with id", "id", cl.ID.Hex())
-	data.Checklist = &cl.Checklist
-	data.ChecklistDocumentId = cl.ID.Hex()
+	app.logger.Info("checklist found with id", "id", clDoc.ID.Hex())
+	data.ChecklistDisplay.UpdateStatusFromChecklist(clDoc.Checklist)
+	data.ChecklistDocumentId = clDoc.ID.Hex()
 	// save the new checklist to the db
 	app.renderPage(w, r, app.pageTemplates.CheckList, "Bike Intake Checklist", &data)
 }
@@ -100,6 +103,8 @@ func (app *application) handlePostUserLogin(w http.ResponseWriter, r *http.Reque
 	data.User = &user
 	app.sessionManager.Put(r.Context(), SessionUserID, user.ID.Hex())
 	app.sessionManager.Put(r.Context(), SessionUserName, user.FirstName)
+	app.logger.Info("User logged in", "user", user)
+	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
 
 func (app *application) handleNotFound(w http.ResponseWriter, r *http.Request) {
@@ -144,6 +149,8 @@ func (app *application) postChecklist(w http.ResponseWriter, r *http.Request) {
 		app.serverError(w, r, err)
 		return
 	}
+
+	http.Redirect(w, r, "/bike/"+clDoc.ID.Hex(), http.StatusSeeOther)
 }
 
 func (app *application) putChecklist(w http.ResponseWriter, r *http.Request) {
@@ -171,6 +178,7 @@ func (app *application) putChecklist(w http.ResponseWriter, r *http.Request) {
 	}
 	// convert form to checklist
 	cl := form.ConvertFormToChecklist()
+	app.logger.Info("checklist", "checklist", cl)
 	// submit and complete checklist
 	if err := app.checklist.Update(r.Context(), clDoc.ID, cl); err != nil {
 		app.serverError(w, r, err)
@@ -178,8 +186,21 @@ func (app *application) putChecklist(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-// TMP
-func (app *application) userLogin(w http.ResponseWriter, r *http.Request) {
+func (app *application) getBikeDisplay(w http.ResponseWriter, r *http.Request) {
 	data := app.newTemplateData(r)
-	app.renderPage(w, r, app.pageTemplates.UserLogin, "User Login", &data)
+	docId := chi.URLParam(r, "slug")
+	app.logger.Info("docId", "docId", docId)
+	docObjId, _ := primitive.ObjectIDFromHex(docId)
+	clDoc, _ := app.checklist.Get(r.Context(), docObjId)
+
+	data.ChecklistDisplay.BikeDescription = clDoc.Description
+	data.ChecklistDisplay.UpdateStatusFromChecklist(clDoc.Checklist)
+	app.renderPage(w, r, app.pageTemplates.BikeDisplay, "Bike Display", &data)
 }
+
+//
+// // TMP
+// func (app *application) userLogin(w http.ResponseWriter, r *http.Request) {
+// 	data := app.newTemplateData(r)
+// 	app.renderPage(w, r, app.pageTemplates.UserLogin, "User Login", &data)
+// }

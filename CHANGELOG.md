@@ -20,8 +20,6 @@ All notable changes to this project will be documented in this file. See [standa
 - add user checklist retrieval and storage ([0c723f3](https://github.com/timenglesf/bike-checkover-checklist/commit/0c723f34f3a4e95f0e4e730f6491c5f640696ca2))
 - updated checklist element to reflect stored radio values ([1e026ae](https://github.com/timenglesf/bike-checkover-checklist/commit/1e026aea9c3826a4ed3ff7dd1100a88316992d21))
 
-> > > > > > > main
-
 ### [0.2.3](https://github.com/timenglesf/bike-checkover-checklist/compare/v0.2.2...v0.2.3) (2024-12-10)
 
 ### Features
