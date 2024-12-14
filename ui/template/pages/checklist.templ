@@ -6,7 +6,6 @@ import (
 )
 
 templ CheckList(d *shared.TemplateData) {
-	<h1 class="mb-8 text-3xl text-center">Bike Checklist</h1>
 	<form method="POST" action="/checklist">
 		<ul class="flex flex-col gap-4 mx-2" hx-put="/checklist" hx-trigger="change from:ul throttle:1s" hx-swap="none">
 			@component.ChecklistItem(d.ChecklistDisplay.BrakePad.Id, d.ChecklistDisplay.BrakePad.Status, d.ChecklistDisplay.BrakePad.Name, d.ChecklistDisplay.BrakePad.Description)
@@ -90,7 +89,13 @@ templ CheckList(d *shared.TemplateData) {
 				type="submit"
 				class="btn btn-info"
 			>Continue</button>
-			<button type="reset" class="btn btn-error">Reset</button>
+			<button
+				type="reset"
+				hx-put="/checklist/reset"
+				hx-swap="InnerHTML"
+				hx-target="main"
+				class="btn btn-error"
+			>Reset</button>
 		</div>
 	</form>
 	<button

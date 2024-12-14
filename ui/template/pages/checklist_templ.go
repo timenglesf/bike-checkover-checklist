@@ -34,7 +34,7 @@ func CheckList(d *shared.TemplateData) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<h1 class=\"mb-8 text-3xl text-center\">Bike Checklist</h1><form method=\"POST\" action=\"/checklist\"><ul class=\"flex flex-col gap-4 mx-2\" hx-put=\"/checklist\" hx-trigger=\"change from:ul throttle:1s\" hx-swap=\"none\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<form method=\"POST\" action=\"/checklist\"><ul class=\"flex flex-col gap-4 mx-2\" hx-put=\"/checklist\" hx-trigger=\"change from:ul throttle:1s\" hx-swap=\"none\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -101,13 +101,13 @@ func CheckList(d *shared.TemplateData) templ.Component {
 		var templ_7745c5c3_Var2 string
 		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(d.ChecklistDisplay.Notes)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `ui/template/pages/checklist.templ`, Line: 39, Col: 31}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `ui/template/pages/checklist.templ`, Line: 38, Col: 31}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</textarea><div class=\"modal-action\"><button type=\"button\" class=\"btn\" onclick=\"my_modal_1.close()\">Close</button></div></div></dialog> <dialog id=\"my_modal_2\" class=\"modal modal-top\"><div class=\"modal-box\"><h3 class=\"text-xl font-bold\">Bike Description</h3><label for=\"brand\"><span class=\"text-lg font-bold\">Brand</span> <input type=\"text\" name=\"brand\" id=\"brand\" class=\"w-full p-2 border border-gray-300 rounded-md\" placeholder=\"Enter brand here\"></label> <label for=\"model\"><span class=\"text-lg font-bold\">Model</span> <input type=\"text\" name=\"model\" id=\"model\" class=\"w-full p-2 border border-gray-300 rounded-md\" placeholder=\"Enter model here\"></label> <label for=\"color\"><span class=\"text-lg font-bold\">Color</span> <input type=\"text\" name=\"color\" id=\"color\" class=\"w-full p-2 border border-gray-300 rounded-md\" placeholder=\"Enter color here\"></label><div class=\"modal-action\"><button type=\"submit\" class=\"btn btn-success\">Submit</button> <button type=\"button\" class=\"btn\" onclick=\"my_modal_2.close()\">Close</button></div></div></dialog><div class=\"flex mt-6 justify-around\"><button type=\"button\" id=\"description-btn\" onclick=\"my_modal_2.showModal()\" type=\"submit\" class=\"btn btn-info\">Continue</button> <button type=\"reset\" class=\"btn btn-error\">Reset</button></div></form><button type=\"button\" id=\"note-btn\" class=\"btn btn-success h-20 w-20 text-3xl rounded-full fixed bottom-6 right-2 shadow-lg\" onclick=\"my_modal_1.showModal()\">✏</button>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</textarea><div class=\"modal-action\"><button type=\"button\" class=\"btn\" onclick=\"my_modal_1.close()\">Close</button></div></div></dialog> <dialog id=\"my_modal_2\" class=\"modal modal-top\"><div class=\"modal-box\"><h3 class=\"text-xl font-bold\">Bike Description</h3><label for=\"brand\"><span class=\"text-lg font-bold\">Brand</span> <input type=\"text\" name=\"brand\" id=\"brand\" class=\"w-full p-2 border border-gray-300 rounded-md\" placeholder=\"Enter brand here\"></label> <label for=\"model\"><span class=\"text-lg font-bold\">Model</span> <input type=\"text\" name=\"model\" id=\"model\" class=\"w-full p-2 border border-gray-300 rounded-md\" placeholder=\"Enter model here\"></label> <label for=\"color\"><span class=\"text-lg font-bold\">Color</span> <input type=\"text\" name=\"color\" id=\"color\" class=\"w-full p-2 border border-gray-300 rounded-md\" placeholder=\"Enter color here\"></label><div class=\"modal-action\"><button type=\"submit\" class=\"btn btn-success\">Submit</button> <button type=\"button\" class=\"btn\" onclick=\"my_modal_2.close()\">Close</button></div></div></dialog><div class=\"flex mt-6 justify-around\"><button type=\"button\" id=\"description-btn\" onclick=\"my_modal_2.showModal()\" type=\"submit\" class=\"btn btn-info\">Continue</button> <button type=\"reset\" hx-put=\"/checklist/reset\" hx-swap=\"InnerHTML\" hx-target=\"main\" class=\"btn btn-error\">Reset</button></div></form><button type=\"button\" id=\"note-btn\" class=\"btn btn-success h-20 w-20 text-3xl rounded-full fixed bottom-6 right-2 shadow-lg\" onclick=\"my_modal_1.showModal()\">✏</button>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

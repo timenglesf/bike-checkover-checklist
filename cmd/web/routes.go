@@ -46,8 +46,10 @@ func (app *application) routes() http.Handler {
 
 	r.Post("/checklist", app.postChecklist)
 	r.Put("/checklist", app.putChecklist)
+	r.Put("/checklist/reset", app.handleChecklistReset)
 
 	r.Get("/bike/{slug}", app.getBikeDisplay)
 
+	r.Get("/user/logout", app.handleLogoutUser)
 	return r
 }

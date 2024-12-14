@@ -197,6 +197,38 @@ func (app *application) getBikeDisplay(w http.ResponseWriter, r *http.Request) {
 	app.renderPage(w, r, app.pageTemplates.BikeDisplay, "Bike Display", &data)
 }
 
+func (app *application) handleChecklistReset(w http.ResponseWriter, r *http.Request) {
+	userIdStr := app.sessionManager.GetString(r.Context(), SessionUserID)
+	if userIdStr == "" {
+		http.Redirect(w, r, "/", http.StatusSeeOther)
+		return
+	}
+	userId, err := primitive.ObjectIDFromHex(userIdStr)
+	if err != nil {
+		app.logger.Error("error converting userId", "userId", userIdStr, "err", err)
+		app.clientError(w, http.StatusUnprocessableEntity, "error", err)
+	}
+	clDoc, err := app.checklist.GetRecentActiveChecklist(r.Context(), userId)
+	if err != nil {
+		app.serverError(w, r, err)
+		return
+	}
+	if err = app.checklist.Reset(r.Context(), clDoc.ID); err != nil {
+		app.serverError(w, r, err)
+		return
+	}
+	data := app.newTemplateData(r)
+	app.renderPage(w, r, app.pageTemplates.CheckList, "Check List", &data)
+}
+
+func (app *application) handleLogoutUser(w http.ResponseWriter, r *http.Request) {
+	if err := app.sessionManager.Destroy(r.Context()); err != nil {
+		app.serverError(w, r, err)
+		return
+	}
+	http.Redirect(w, r, "/", http.StatusSeeOther)
+}
+
 //
 // // TMP
 // func (app *application) userLogin(w http.ResponseWriter, r *http.Request) {
