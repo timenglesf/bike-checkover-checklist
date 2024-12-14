@@ -40,14 +40,12 @@ func (app *application) routes() http.Handler {
 
 	r.Get("/", app.handleDisplayMainPage)
 
-	// r.Get("/login", app.userLogin)
 	r.Post("/user/login", app.handlePostUserLogin)
-	// r.Get("/checklist", app.getChecklistDisplayHandler)
 
 	r.Post("/checklist", app.postChecklist)
 	r.Put("/checklist", app.putChecklist)
 
-	r.Get("/bike/{slug}", app.getBikeDisplay)
 
+	r.Get("/bike/{slug}", app.getBikeDisplay)
 	return r
 }

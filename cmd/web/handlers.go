@@ -178,7 +178,7 @@ func (app *application) putChecklist(w http.ResponseWriter, r *http.Request) {
 	}
 	// convert form to checklist
 	cl := form.ConvertFormToChecklist()
-	app.logger.Info("checklist", "checklist", cl)
+
 	// submit and complete checklist
 	if err := app.checklist.Update(r.Context(), clDoc.ID, cl); err != nil {
 		app.serverError(w, r, err)
@@ -197,10 +197,3 @@ func (app *application) getBikeDisplay(w http.ResponseWriter, r *http.Request) {
 	data.ChecklistDisplay.UpdateStatusFromChecklist(clDoc.Checklist)
 	app.renderPage(w, r, app.pageTemplates.BikeDisplay, "Bike Display", &data)
 }
-
-//
-// // TMP
-// func (app *application) userLogin(w http.ResponseWriter, r *http.Request) {
-// 	data := app.newTemplateData(r)
-// 	app.renderPage(w, r, app.pageTemplates.UserLogin, "User Login", &data)
-// }
