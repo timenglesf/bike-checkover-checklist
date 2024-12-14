@@ -36,7 +36,6 @@ var (
 	Shifting      ChecklistItemId = "shifting"
 )
 
-// ChecklistItemStatus constants
 var (
 	Pass          ChecklistItemStatus = "pass"
 	Fail          ChecklistItemStatus = "fail"
@@ -77,7 +76,6 @@ type BikeDescription struct {
 	Color string `bson:"color" form:"color"`
 }
 
-// ChecklistDocument struct
 type ChecklistDocument struct {
 	Checklist   Checklist          `bson:"checklist"`
 	ID          primitive.ObjectID `bson:"_id,omitempty"`
@@ -161,8 +159,14 @@ func (m *ChecklistModel) Update(ctx context.Context, documentId primitive.Object
 	return m.updateChecklistDocument(ctx, documentId, update)
 }
 
-// SubmitChecklist updates the checklist and sets complete fields of a checklist document to true.
-func (m *ChecklistModel) SubmitChecklist(ctx context.Context, documentId primitive.ObjectID, checklist Checklist, description BikeDescription) error {
+// SubmitChecklist updates the checklist and
+// sets complete fields of a checklist document to true.
+func (m *ChecklistModel) SubmitChecklist(
+	ctx context.Context,
+	documentId primitive.ObjectID,
+	checklist Checklist,
+	description BikeDescription,
+) error {
 	update := bson.M{"$set": bson.M{"complete": true, "checklist": checklist, "description": description}}
 	return m.updateChecklistDocument(ctx, documentId, update)
 }

@@ -178,7 +178,6 @@ func (app *application) putChecklist(w http.ResponseWriter, r *http.Request) {
 	}
 	// convert form to checklist
 	cl := form.ConvertFormToChecklist()
-	app.logger.Info("checklist", "checklist", cl)
 	// submit and complete checklist
 	if err := app.checklist.Update(r.Context(), clDoc.ID, cl); err != nil {
 		app.serverError(w, r, err)
