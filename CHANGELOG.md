@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0](https://github.com/timenglesf/bike-checkover-checklist/compare/v0.2.5...v0.3.0) (2024-12-14)
+
+
+### Features
+
+* add bike description to checklist form ([2ff7e4c](https://github.com/timenglesf/bike-checkover-checklist/commit/2ff7e4cd5c304d9ddf7af308944302a33dbcc54a))
+* add bike display page checklist updates and redirect login ([e19ff4e](https://github.com/timenglesf/bike-checkover-checklist/commit/e19ff4ea205ea1c16251b29436242529329b72c6))
+* add notes field to checklist ([792ff49](https://github.com/timenglesf/bike-checkover-checklist/commit/792ff494e27caa820b9711d5f723537306e70c53))
+* updated checklist element to reflect stored radio values ([#7](https://github.com/timenglesf/bike-checkover-checklist/issues/7)) ([2ff77a3](https://github.com/timenglesf/bike-checkover-checklist/commit/2ff77a38602072df6620c2475f75892929910e5b))
+
 ### [0.2.5](https://github.com/timenglesf/bike-checkover-checklist/compare/v0.2.4...v0.2.5) (2024-12-13)
 
 ### Features
