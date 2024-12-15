@@ -28,6 +28,7 @@ templ Navbar(d *shared.TemplateData) {
 				>
 					<li><a href="/">Homepage</a></li>
 					if d.IsAuthenticated {
+						<li><a href="/history">History</a></li>
 						<li><a href="/user/logout">Logout</a></li>
 					}
 				</ul>

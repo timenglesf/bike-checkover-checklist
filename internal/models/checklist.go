@@ -211,7 +211,7 @@ func (m *ChecklistModel) Get(ctx context.Context, documentId primitive.ObjectID)
 // GetUserChecklists retrieves all checklist documents for a given userId.
 func (m *ChecklistModel) GetUserChecklists(ctx context.Context, userId primitive.ObjectID) ([]ChecklistDocument, error) {
 	coll := m.getCollection()
-	filter := bson.M{"userId": userId}
+	filter := bson.M{"userId": userId, "complete": true}
 	opts := options.Find().SetSort(bson.D{{Key: "createdAt", Value: -1}})
 	cursor, err := coll.Find(ctx, filter, opts)
 	if err != nil {

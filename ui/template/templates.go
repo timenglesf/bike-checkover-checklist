@@ -13,6 +13,7 @@ type Pages struct {
 	CheckList   func(data *shared.TemplateData) templ.Component
 	UserLogin   func(data *shared.TemplateData) templ.Component
 	BikeDisplay func(data *shared.TemplateData) templ.Component
+	UserHistory func(data *shared.TemplateData) templ.Component
 	// LogIn     func(data *shared.TemplateData) templ.Component
 }
 
@@ -28,6 +29,7 @@ func CreatePages() *Pages {
 		CheckList:   pages.CheckList,
 		UserLogin:   pages.UserLogin,
 		BikeDisplay: pages.BikeDisplay,
+		UserHistory: pages.UserHistory,
 	}
 }
 

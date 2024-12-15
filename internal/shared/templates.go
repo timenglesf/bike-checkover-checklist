@@ -27,6 +27,21 @@ type FlashMessage struct {
 	Type    FlashType
 }
 
+type ChecklistListEntry struct {
+	Id          string
+	CreatedAt   time.Time
+	Checklist   models.Checklist
+	Description models.BikeDescription
+}
+
+func ConvertChecklistToChecklistListEntry(clDoc models.ChecklistDocument) ChecklistListEntry {
+	return ChecklistListEntry{
+		Id:          clDoc.ID.Hex(),
+		CreatedAt:   clDoc.CreatedAt.Time(),
+		Description: clDoc.Description,
+	}
+}
+
 type TemplateData struct {
 	// IsAdmin         bool
 	Flash               *FlashMessage
@@ -36,6 +51,7 @@ type TemplateData struct {
 	User                *models.User
 	ChecklistDisplay    *models.ChecklistDisplay
 	ChecklistDocumentId string
+	ChecklistList       []ChecklistListEntry
 	//	CSRFToken   string
 	CurrentYear int
 }
