@@ -51,5 +51,6 @@ func (app *application) routes() http.Handler {
 	r.Get("/bike/{slug}", app.getBikeDisplay)
 
 	r.Get("/user/logout", app.handleLogoutUser)
+	r.Get("/history", app.handleDisplayUserHistory)
 	return r
 }
