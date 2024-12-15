@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.4.0](https://github.com/timenglesf/bike-checkover-checklist/compare/v0.3.0...v0.4.0) (2024-12-15)
+
+
+### Features
+
+* add admin login functionality ([c8d3589](https://github.com/timenglesf/bike-checkover-checklist/commit/c8d3589303cffa9ecc8f9669564771bd24c81d4b))
+* add checklist reset and user logout functionality ([77f7753](https://github.com/timenglesf/bike-checkover-checklist/commit/77f7753ae46bd605b45a227f6c86df8c7139c794))
+* add user creation functionality ([85bfdb2](https://github.com/timenglesf/bike-checkover-checklist/commit/85bfdb2cc83cddaf5199035161a1f90de8519b8e))
+* add user history page and checklist filtering ([525ae1e](https://github.com/timenglesf/bike-checkover-checklist/commit/525ae1e94d78374989c33b58432e40aa03306b53))
+* refactor handlers into separate files ([d777b1d](https://github.com/timenglesf/bike-checkover-checklist/commit/d777b1d4626382c6003a9d7494e0a0261efa93cf))
+
 ## [0.3.0](https://github.com/timenglesf/bike-checkover-checklist/compare/v0.2.5...v0.3.0) (2024-12-14)
 
 ### Features
