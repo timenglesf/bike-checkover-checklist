@@ -36,7 +36,7 @@ func Navbar(d *shared.TemplateData) templ.Component {
 			return templ_7745c5c3_Err
 		}
 		if d.IsAuthenticated {
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<li><a href=\"/user/logout\">Logout</a></li>")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<li><a href=\"/history\">History</a></li><li><a href=\"/user/logout\">Logout</a></li>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

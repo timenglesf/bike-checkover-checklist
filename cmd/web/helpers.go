@@ -39,6 +39,13 @@ func (app *application) isAuthenticated(r *http.Request) bool {
 	return app.sessionManager.Exists(r.Context(), SessionUserID)
 }
 
+func (app *application) isAdmin(r *http.Request) bool {
+	if !app.sessionManager.Exists(r.Context(), SessionIsAdmin) {
+		return false
+	}
+	return app.sessionManager.GetBool(r.Context(), SessionIsAdmin)
+}
+
 func (app *application) newTemplateData(r *http.Request) shared.TemplateData {
 	return shared.TemplateData{
 		Date:             time.Now(),
@@ -46,7 +53,7 @@ func (app *application) newTemplateData(r *http.Request) shared.TemplateData {
 		Flash:            &shared.FlashMessage{},
 		ChecklistDisplay: models.CreateChecklistDisplay(),
 		IsAuthenticated:  app.isAuthenticated(r),
-		// IsAdmin:         app.isAdmin(r),
+		IsAdmin:          app.isAdmin(r),
 		// CSRFToken:       nosurf.Token(r),
 	}
 }

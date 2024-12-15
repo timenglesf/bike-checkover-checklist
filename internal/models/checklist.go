@@ -98,12 +98,12 @@ type BikeDescription struct {
 
 type ChecklistDocument struct {
 	Checklist   Checklist          `bson:"checklist"`
+	Description BikeDescription    `bson:"description,omitempty"`
+	StoreId     string             `bson:"storeId"`
+	Complete    bool               `bson:"complete"`
 	ID          primitive.ObjectID `bson:"_id,omitempty"`
 	UserId      primitive.ObjectID `bson:"userId"`
-	StoreId     string             `bson:"storeId"`
 	CreatedAt   primitive.DateTime `bson:"createdAt"`
-	Complete    bool               `bson:"complete"`
-	Description BikeDescription    `bson:"description,omitempty"`
 }
 
 // ChecklistModel struct
@@ -211,7 +211,7 @@ func (m *ChecklistModel) Get(ctx context.Context, documentId primitive.ObjectID)
 // GetUserChecklists retrieves all checklist documents for a given userId.
 func (m *ChecklistModel) GetUserChecklists(ctx context.Context, userId primitive.ObjectID) ([]ChecklistDocument, error) {
 	coll := m.getCollection()
-	filter := bson.M{"userId": userId}
+	filter := bson.M{"userId": userId, "complete": true}
 	opts := options.Find().SetSort(bson.D{{Key: "createdAt", Value: -1}})
 	cursor, err := coll.Find(ctx, filter, opts)
 	if err != nil {

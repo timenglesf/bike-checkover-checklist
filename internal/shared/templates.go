@@ -27,15 +27,33 @@ type FlashMessage struct {
 	Type    FlashType
 }
 
+type ChecklistListEntry struct {
+	Id          string
+	CreatedAt   time.Time
+	Checklist   models.Checklist
+	Description models.BikeDescription
+}
+
+func ConvertChecklistToChecklistListEntry(clDoc models.ChecklistDocument) ChecklistListEntry {
+	return ChecklistListEntry{
+		Id:          clDoc.ID.Hex(),
+		CreatedAt:   clDoc.CreatedAt.Time(),
+		Description: clDoc.Description,
+	}
+}
+
 type TemplateData struct {
-	// IsAdmin         bool
-	Flash               *FlashMessage
-	PinForm             PinForm
-	Date                time.Time
-	IsAuthenticated     bool
-	User                *models.User
-	ChecklistDisplay    *models.ChecklistDisplay
-	ChecklistDocumentId string
+	Flash                *FlashMessage
+	PinForm              PinForm
+	Date                 time.Time
+	IsAdmin              bool
+	IsAuthenticated      bool
+	User                 *models.User
+	AdminFormData        AdminLoginForm
+	UserCreationFormData models.UserForm
+	ChecklistDisplay     *models.ChecklistDisplay
+	ChecklistDocumentId  string
+	ChecklistList        []ChecklistListEntry
 	//	CSRFToken   string
 	CurrentYear int
 }
@@ -45,6 +63,12 @@ type TemplateData struct {
 type PinForm struct {
 	validator.Validator `form:"-"`
 	Pin                 string `form:"pin"`
+}
+
+type AdminLoginForm struct {
+	validator.Validator `form:"-"`
+	Username            string `form:"username"`
+	Password            string `form:"password"`
 }
 
 func HumanDate(t time.Time) string {
