@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/timenglesf/bike-checkover-checklist/internal/validator"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -14,12 +15,12 @@ import (
 const USER_COLL = "users"
 
 type User struct {
-	FirstName string             `bson:"firstName"`
-	LastName  string             `bson:"lastName"`
+	FirstName string             `bson:"firstName" form:"first-name"`
+	LastName  string             `bson:"lastName" form:"last-name"`
+	Pin       string             `bson:"pin" form:"pin"`
+	StoreId   string             `bson:"storeId" form:"store-id"`
 	CreatedAt primitive.DateTime `bson:"createdAt"`
-	ID        primitive.ObjectID `bson:"_id"`
-	Pin       string             `bson:"pin"`
-	StoreId   string             `bson:"storeId"`
+	ID        primitive.ObjectID `bson:"_id,omitempty"`
 }
 
 type UserModel struct {
@@ -34,6 +35,7 @@ type UserModelInterface interface {
 	FindByPin(pin string, ctx context.Context) (User, error)
 	FindAll(ctx context.Context) ([]User, error)
 	FindUsersByStoreId(storeId string, ctx context.Context) ([]User, error)
+	GetDocumentCountByPin(ctx context.Context, pin string) (int64, error)
 }
 
 func CreateUser(firstName, lastName, pin, storeId string) User {
@@ -101,6 +103,19 @@ func (m *UserModel) FindByPin(
 	return user, nil
 }
 
+func (m *UserModel) GetDocumentCountByPin(
+	ctx context.Context,
+	pin string,
+) (int64, error) {
+	coll := m.getCollection()
+	filter := bson.M{"pin": pin}
+	count, err := coll.CountDocuments(ctx, filter)
+	if err != nil {
+		return 0, err
+	}
+	return count, nil
+}
+
 func (m *UserModel) GetAll(ctx context.Context) ([]User, error) {
 	coll := m.getCollection()
 	cursor, err := coll.Find(ctx, nil)
@@ -131,4 +146,14 @@ func (m *UserModel) GetUsersByStoreId(
 		return nil, err
 	}
 	return users, nil
+}
+
+///////////////////////////////
+/////// USER FORMS ////////////
+///////////////////////////////
+
+type UserForm struct {
+	validator.Validator `form:"-"`
+	User
+	PinConfirm string `form:"pin-confirm"`
 }

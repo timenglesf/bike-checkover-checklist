@@ -110,5 +110,5 @@ func (app *application) handleDisplayAdminPage(w http.ResponseWriter, r *http.Re
 		app.renderPage(w, r, app.pageTemplates.AdminLogin, "Admin Login", &data)
 		return
 	}
-	w.Write([]byte("Admin Page"))
+	app.renderPage(w, r, app.pageTemplates.UserCreation, "User Creation", &data)
 }

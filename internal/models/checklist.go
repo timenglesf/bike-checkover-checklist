@@ -98,12 +98,12 @@ type BikeDescription struct {
 
 type ChecklistDocument struct {
 	Checklist   Checklist          `bson:"checklist"`
+	Description BikeDescription    `bson:"description,omitempty"`
+	StoreId     string             `bson:"storeId"`
+	Complete    bool               `bson:"complete"`
 	ID          primitive.ObjectID `bson:"_id,omitempty"`
 	UserId      primitive.ObjectID `bson:"userId"`
-	StoreId     string             `bson:"storeId"`
 	CreatedAt   primitive.DateTime `bson:"createdAt"`
-	Complete    bool               `bson:"complete"`
-	Description BikeDescription    `bson:"description,omitempty"`
 }
 
 // ChecklistModel struct
