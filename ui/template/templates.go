@@ -14,6 +14,7 @@ type Pages struct {
 	UserLogin   func(data *shared.TemplateData) templ.Component
 	BikeDisplay func(data *shared.TemplateData) templ.Component
 	UserHistory func(data *shared.TemplateData) templ.Component
+	AdminLogin  func(data *shared.TemplateData) templ.Component
 	// LogIn     func(data *shared.TemplateData) templ.Component
 }
 
@@ -30,6 +31,7 @@ func CreatePages() *Pages {
 		UserLogin:   pages.UserLogin,
 		BikeDisplay: pages.BikeDisplay,
 		UserHistory: pages.UserHistory,
+		AdminLogin:  pages.AdminLogin,
 	}
 }
 

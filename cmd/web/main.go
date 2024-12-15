@@ -18,6 +18,9 @@ const (
 	DB_NAME                 = "bike-check-in"
 	DB_USER_COLLECTION      = "users"
 	DB_CHECKLIST_COLLECTION = "checklists"
+	DB_ADMIN_COLLECTION     = "admins"
+	MB_ADMIN                = "MB_ADMIN"
+	MB_PASS                 = "MB_PASS"
 )
 
 type application struct {
@@ -31,6 +34,7 @@ type application struct {
 	sessionManager *scs.SessionManager
 	users          *models.UserModel
 	checklist      *models.ChecklistModel
+	admin          *models.AdminModel
 	// models data.Models
 
 	formDecoder *form.Decoder
@@ -68,6 +72,12 @@ func main() {
 	if err != nil {
 		app.logger.Error("Error creating application", "err", err)
 		return
+	}
+
+	err = app.adminVerification()
+	if err != nil {
+		app.logger.Error("Error verifying admin", "err", err)
+		os.Exit(1)
 	}
 
 	// Start the HTTP server.

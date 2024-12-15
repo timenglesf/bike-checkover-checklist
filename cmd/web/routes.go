@@ -52,5 +52,8 @@ func (app *application) routes() http.Handler {
 
 	r.Get("/user/logout", app.handleLogoutUser)
 	r.Get("/history", app.handleDisplayUserHistory)
+
+	r.Get("/admin", app.handleDisplayAdminPage)
+	r.Post("/admin/login", app.handlePostAdminLogin)
 	return r
 }

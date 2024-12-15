@@ -99,3 +99,16 @@ func (app *application) handleDisplayUserHistory(w http.ResponseWriter, r *http.
 
 	app.renderPage(w, r, app.pageTemplates.UserHistory, "User History", &data)
 }
+
+//////////////////////////
+// ADMIN PAGE HANDLERS //
+//////////////////////////
+
+func (app *application) handleDisplayAdminPage(w http.ResponseWriter, r *http.Request) {
+	data := app.newTemplateData(r)
+	if !data.IsAdmin {
+		app.renderPage(w, r, app.pageTemplates.AdminLogin, "Admin Login", &data)
+		return
+	}
+	w.Write([]byte("Admin Page"))
+}
